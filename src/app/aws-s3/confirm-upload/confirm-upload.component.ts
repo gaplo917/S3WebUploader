@@ -59,8 +59,4 @@ export class ConfirmUploadComponent implements OnInit {
       })
     }
   }
-
-  changePromptSetting(val: boolean) {
-    this.s3.changeUploadPromptSetting(val)
-  }
 }

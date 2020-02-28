@@ -6,7 +6,6 @@ import { S3Item } from 'src/app/aws-s3/s3-item'
 import { SelectionService } from 'src/app/tree-view/services/selection.service'
 import { collectFiles } from 'src/app/collectfiles'
 import { RequestUploadService } from 'src/app/aws-s3/services/request-upload.service'
-import { AnalyticsService } from 'src/app/infrastructure/services/analytics.service'
 import { IAccount } from '../../services/model'
 
 @Component({
@@ -28,7 +27,6 @@ export class FolderBrowserComponent extends SubscriptionComponent implements OnI
     private s3: S3Service,
     private upload: RequestUploadService,
     private selection: SelectionService,
-    private analytics: AnalyticsService,
   ) {
     super()
   }

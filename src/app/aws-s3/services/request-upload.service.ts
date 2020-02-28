@@ -13,11 +13,7 @@ export class RequestUploadService {
   toPrompt = true
   constructor(private dom: DomService, private s3: S3Service, private electron: ElectronService) {}
 
-  init() {
-    this.electron.onCD('Settings-SettingsChanged', (event: string, arg: any) => {
-      this.toPrompt = arg['prompt-upload']
-    })
-  }
+  init() {}
 
   requestUpload(account: IAccount, bucket: string, prefix: string, items: UploadItem[]) {
     if (this.toPrompt) {

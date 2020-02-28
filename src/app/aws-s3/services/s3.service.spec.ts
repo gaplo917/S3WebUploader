@@ -38,24 +38,7 @@ describe('S3Service', () => {
     service.requestDownload({ id: 'hi', secret: '', url: '' }, 'hi', 'hi123')
     expect(electron.messageWasSent('S3-RequestDownload')).toBeTruthy()
   }))
-  it('should emit new download path on Settings-SettingsChanged', inject([S3Service], (service: S3Service) => {
-    let path = ''
-    service.init()
-    service.DownloadPath.subscribe(s => {
-      path = s
-    })
-    electron.send('Settings-SettingsChanged', { 'download-path': 'hi' })
 
-    expect(path).toBe('hi')
-  }))
-  it('should send Settings-BrowseDownloadPath on browseDownloadPath', inject([S3Service], (service: S3Service) => {
-    service.browseDownloadPath()
-    expect(electron.messageWasSent('Settings-BrowseDownloadPath')).toBeTruthy()
-  }))
-  it('should send Settings-ResetDownloadPath on resetDownloadPath', inject([S3Service], (service: S3Service) => {
-    service.resetDownloadPath()
-    expect(electron.messageWasSent('Settings-ResetDownloadPath')).toBeTruthy()
-  }))
   it('should emit ItemsEnumerated on ObjectListed', inject([S3Service], (service: S3Service) => {
     let items = []
     service.ItemsEnumerated.subscribe(its => {

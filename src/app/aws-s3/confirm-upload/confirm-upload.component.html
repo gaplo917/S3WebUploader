@@ -42,20 +42,6 @@
               </div>
             </div>
           </div>
-          <div class="row mt-1">
-            <div class="col-12">
-              <div
-                style="display: inline-block"
-                appTooltip
-                tooltipTitle="You can change this later in the settings page"
-                tooltipPlacement="top"
-              >
-                <app-checkbox [(checkedValue)]="promptSetting" (checkedValueChange)="changePromptSetting($event)">
-                  Ask for confirmation on upload
-                </app-checkbox>
-              </div>
-            </div>
-          </div>
           <div class="row mt-3">
             <div class="col-12">
               <button class="btn btn-primary" [class.disabled]="!isValid" (click)="upload()">Upload</button>

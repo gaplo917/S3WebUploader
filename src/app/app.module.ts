@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule, Routes } from '@angular/router'
-import { NgModule, ErrorHandler } from '@angular/core'
+import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { SimpleNotificationsModule, NotificationAnimationType } from 'angular2-notifications'
@@ -14,17 +14,13 @@ import { TreeViewModule } from './tree-view/tree-view.module'
 import { AwsAccountsModule } from './aws-accounts/aws-accounts.module'
 import { SideHeaderComponent } from './side-header/side-header.component'
 import { WelcomePageComponent } from './welcome-page/welcome-page.component'
-import { SettingsPageComponent } from './settings-page/settings-page.component'
-import { RequestTrackingModule } from './request-tracking/request-tracking.module'
 import { FolderBrowserModule } from './folder-browser/folder-browser.module'
 import { FolderBrowserComponent } from './folder-browser/folder-browser/folder-browser.component'
 import { HistoriesModule } from './histories/histories.module'
 import { AwsS3Module } from './aws-s3/aws-s3.module'
-import { AnalyticsExceptionHandler } from './infrastructure/analytics-exceptions'
 
 const routes: Routes = [
   { path: 'home', component: WelcomePageComponent },
-  { path: 'settings', component: SettingsPageComponent },
   {
     path: 'browse',
     children: [
@@ -38,7 +34,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AppComponent, SideNavComponent, SideHeaderComponent, WelcomePageComponent, SettingsPageComponent],
+  declarations: [AppComponent, SideNavComponent, SideHeaderComponent, WelcomePageComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -76,16 +72,10 @@ const routes: Routes = [
     JobViewModule,
     AwsAccountsModule,
     AwsS3Module,
-    RequestTrackingModule,
     FolderBrowserModule,
     HistoriesModule,
   ],
-  providers: [
-    {
-      provide: ErrorHandler,
-      useClass: AnalyticsExceptionHandler,
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

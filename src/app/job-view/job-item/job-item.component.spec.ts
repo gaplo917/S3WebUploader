@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing'
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { JobItemComponent } from './job-item.component'
 import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { JobType } from '../job-type'
 import { JobStatus } from '../job-status'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { JobService } from '../job.service'
+import { FileSizePipe } from '../../pipes/file-size.pipe'
 
 describe('JobItemComponent', () => {
   let component: JobItemComponent
@@ -13,7 +13,7 @@ describe('JobItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [JobItemComponent],
+      declarations: [JobItemComponent, FileSizePipe],
       imports: [NoopAnimationsModule],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents()

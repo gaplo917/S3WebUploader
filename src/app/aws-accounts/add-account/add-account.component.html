@@ -42,7 +42,7 @@
                   class="form-control form-control-alternative mt-1"
                   [class.is-valid]="!loading && tested && valid && url"
                   [class.is-invalid]="!loading && tested && !valid && url"
-                  placeholder="Endpoint that is points to AWS S3-compatible service"
+                  placeholder="Endpoint points to AWS S3-compatible service"
                   [(ngModel)]="url"
                   (input)="onTextChange()"
                 />
@@ -83,7 +83,7 @@
         </form>
         <div *ngIf="!loading && !valid" @ngIfAnimation>
           <button
-            id="test-btn"
+            id="add-account-btn"
             class="btn btn-info"
             [class.disabled]="key === '' || secret === '' || url == '' || (isSaveSecurely && masterPassword === '')"
             (click)="testAccount()"

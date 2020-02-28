@@ -34,7 +34,7 @@ describe('AddAccountComponent', () => {
     expect(emit).toBeTruthy()
   })
   it('should disable test button when no name entered', () => {
-    expect(fixture.nativeElement.querySelector('#test-btn').classList).toContain('disabled')
+    expect(fixture.nativeElement.querySelector('#add-account-btn').classList).toContain('disabled')
   })
   it('should not show credential not found on startup', () => {
     expect(fixture.nativeElement.querySelector('#cred-not-found')).toBeNull()
@@ -50,7 +50,7 @@ describe('AddAccountComponent', () => {
     url.value = 'url'
     url.dispatchEvent(new Event('input'))
     fixture.detectChanges()
-    expect(fixture.nativeElement.querySelector('#test-btn').classList).not.toContain('disabled')
+    expect(fixture.nativeElement.querySelector('#add-account-btn').classList).not.toContain('disabled')
   }))
   it('should only display spinner when loading', () => {
     component.loading = true
@@ -69,7 +69,7 @@ describe('AddAccountComponent', () => {
     element.value = 'hi'
     element.dispatchEvent(new Event('input'))
     fixture.detectChanges()
-    fixture.nativeElement.querySelector('#test-btn').click()
+    fixture.nativeElement.querySelector('#add-account-btn').click()
 
     expect(spy).toHaveBeenCalled()
     expect(component.loading).toBeTruthy()
@@ -89,6 +89,6 @@ describe('AddAccountComponent', () => {
     tick()
     expect(fixture.nativeElement.querySelector('#cred-found')).toBe(null)
     expect(fixture.nativeElement.querySelector('#add-account-container')).toBe(null)
-    expect(fixture.nativeElement.querySelector('#test-btn')).not.toBeNull()
+    expect(fixture.nativeElement.querySelector('#add-account-btn')).not.toBeNull()
   }))
 })

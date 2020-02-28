@@ -3,7 +3,6 @@ import { ElectronService } from 'src/app/infrastructure/services/electron.servic
 import { S3Item } from '../s3-item'
 import * as uuid from 'uuid'
 import { BehaviorSubject, Observable } from 'rxjs'
-import { AnalyticsService } from 'src/app/infrastructure/services/analytics.service'
 import { IAccount } from '../../services/model'
 
 @Injectable({
@@ -22,7 +21,7 @@ export class S3Service {
   private _cachedItems: { [key: string]: S3Item[] } = {}
   private _cachedAccounts: { [key: string]: IAccount } = {}
   private _downloadPath = new BehaviorSubject('')
-  constructor(private electron: ElectronService, private analytics: AnalyticsService) {
+  constructor(private electron: ElectronService) {
     this.DownloadPath = this._downloadPath.asObservable()
   }
 
@@ -98,9 +97,6 @@ export class S3Service {
       const params = this.getS3Parameters(arg.parents)
       this.listObjects(arg.account, params.bucket, params.prefix)
     })
-    this.electron.onCD('Settings-SettingsChanged', (event: string, arg: any) => {
-      this._downloadPath.next(arg['download-path'])
-    })
     this.electron.onCD('S3-ListingObjects', (event: string, arg: any) => {
       this.RefreshingObjects.emit(arg)
     })
@@ -137,7 +133,6 @@ export class S3Service {
       key: key,
       saveTo: this._downloadPath.value,
     })
-    this.analytics.logEvent('S3', 'RequestDownload')
     return id.toString()
   }
 
@@ -162,20 +157,6 @@ export class S3Service {
       files: files,
       parents: [account.id, bucket].concat(prefix.split('/')),
     })
-    this.analytics.logEvent('S3', 'RequestBulkUpload')
-  }
-
-  browseDownloadPath() {
-    this.electron.send('Settings-BrowseDownloadPath', {})
-  }
-
-  resetDownloadPath() {
-    this.electron.send('Settings-ResetDownloadPath', {})
-  }
-
-  changeUploadPromptSetting(val: boolean) {
-    this.analytics.logEvent('S3', 'ChangeUploadPromptSetting : ' + `${val}`)
-    this.electron.send('Settings-Set', { key: 'prompt-upload', value: val })
   }
 
   private getS3Parameters(parents: string[]): { account: string; bucket: string; prefix: string } {

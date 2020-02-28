@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@ng-select/ng-select": "^2.18.0",
+    "@types/crypto-js": "^3.1.43",
     "angular2-datetimepicker": "^1.1.1",
     "angular2-draggable": "^2.1.7",
     "angular2-notifications": "^2.0.0",
