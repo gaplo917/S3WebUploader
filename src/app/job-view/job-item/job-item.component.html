@@ -24,9 +24,7 @@
         <div class="desc-text">{{ destination }}</div>
       </div>
       <div class="job-desc">
-        <div class="desc-text">
-          ({{ loaded / 1024 / 1024 | number: '1.1-1' }}MB/{{ total / 1024 / 1024 | number: '1.1-1' }}MB)
-        </div>
+        <div class="desc-text">({{ loaded | fileSize }}/{{ total | fileSize }})</div>
       </div>
       <div class="ml-2 progress-percentage" *ngIf="_jobstatus === 'r'" @ngIfAnimation>
         <span>{{ percentage }}%</span>
@@ -37,9 +35,6 @@
         </div>
       </div>
       <div class="job-actions finished smooth-4" *ngIf="_jobstatus !== 'r'">
-        <div class="job-action flex-center-all" id="open-folder-btn" (click)="onOpenFileLocation($event)">
-          <i class="ion-ios-folder-open"></i>
-        </div>
         <div class="job-action flex-center-all" id="delete-job-btn" (click)="onDeleteJob($event)">
           <i class="ion-ios-trash"></i>
         </div>

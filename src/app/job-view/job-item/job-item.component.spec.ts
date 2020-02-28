@@ -98,17 +98,6 @@ describe('JobItemComponent', () => {
 
     expect(emit).toBeTruthy()
   })
-  it('should emit toOpen when onOpenFileLocation', () => {
-    let emit = false
-    component.toOpen.subscribe(() => {
-      emit = true
-    })
-    component.jobStatus = JobStatus.Completed
-    fixture.detectChanges()
-    fixture.nativeElement.querySelector('#open-folder-btn').click()
-
-    expect(emit).toBeTruthy()
-  })
 
   it('should emit toStop when onStopJob', () => {
     let emit = false

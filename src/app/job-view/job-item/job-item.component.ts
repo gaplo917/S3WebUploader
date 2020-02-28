@@ -70,11 +70,6 @@ export class JobItemComponent implements OnInit {
     event.stopPropagation()
   }
 
-  onOpenFileLocation(event) {
-    this.toOpen.emit()
-    event.stopPropagation()
-  }
-
   onStopJob(event) {
     this.toStop.emit()
     event.stopPropagation()
