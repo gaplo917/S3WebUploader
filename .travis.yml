@@ -1,16 +1,19 @@
 language: node_js
 node_js:
-  - "12"
+- '12'
 cache:
   directories:
-    - node_modules
+  - node_modules
 script:
-  - yarn build
+- yarn build
 deploy:
   provider: pages
   skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  github-token: "$GITHUB_TOKEN"
   keep-history: true
   local-dir: dist
   on:
     branch: master
+env:
+  global:
+    secure: CqsK+B6ec3Syq3zZNTV9c7O59DCSAzv4qedIUqxs+pde9gBNOZ9lFXcaVa5v3yPLj+SiF9eEdy2ToiJkfLi/qYeztvqiygL3LkJeimvdzO0AGuVJutYDzW8XdV1FgjIAdzFLFJiB9NLSc8GSsUvfLxVhesFjv+lwSBwyN9qLEpulItdBmTJpc0HUw3zdEhIqiPjPXE9jwn4bCPO2eGMz8jsvdZL0CVQ73XSaJjwIuS7SOKgFjWU5lfMkUNuHeHZcYT+hkUIX+/iu71IKPShtMVbFIfbkUNRrwVAV8HmpPESstwH9ceRJuprmKtgUZ6Fs9JABenYj+Zvxa1kSCtfroHcSedEuKBjtPWF+nnTjZ4YsEoOIFCw6BWWfRusO1cP3K5LjJpB/5uU4JCZBCzkhpYib8oU8WFLn2cNNtnfNTNg0pch6QlimYc3pQoYGBUEZxesZt/rHxXYLl5+N9imaH+mxJoxEy6XbbudHgqMaS/twcGbDoV4ZHQHMVP6X7S+auY5KY7v9m16TvgTdTQyTw4F7RWbstgFeYLWm0oVkOhANWsg0EjhM15tMLGerfXnx5hq9OeC6/6w8W4CFMULKUhaex3Mj3bx8lv9D4HWIP3ztGXSXyNpGjBGhzHnkvtcKUUtaAhCuMSR9gnVyosE9EHhZ4XRe1HSXzIx/pp9QGUM=
