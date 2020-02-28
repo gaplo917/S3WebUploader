@@ -1,4 +1,4 @@
-import { AnalyticsService } from "./services/analytics.service";
+import { AnalyticsService } from './services/analytics.service';
 
 export function AnalyticsTracked(screen: string): ClassDecorator {
     return function (constructor: any) {

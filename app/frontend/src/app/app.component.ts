@@ -11,6 +11,11 @@ import { HistoriesService } from './histories/services/histories.service';
 import { RequestUploadService } from './aws-s3/services/request-upload.service';
 import { UpdaterService } from './infrastructure/services/updater.service';
 import { AnalyticsService } from './infrastructure/services/analytics.service';
+import { ElectronAccountsService } from './services/accounts'
+import { ElectronAWSService } from './services/aws'
+import { ElectronHistoryStorage } from './services/history-storage.service'
+import { ElectronJobManager } from './services/job-manager'
+import { ElectronS3Service } from './services/s3'
 
 
 @Component({
@@ -31,7 +36,12 @@ export class AppComponent implements OnInit{
     private histories: HistoriesService,
     private reqUpload: RequestUploadService,
     private updater: UpdaterService,
-    private analytics: AnalyticsService
+    private analytics: AnalyticsService,
+    private eAccount: ElectronAccountsService,
+    private eAws: ElectronAWSService,
+    private eHistoryStorage: ElectronHistoryStorage,
+    private eJobManager: ElectronJobManager,
+    private eS3: ElectronS3Service
   ){
     accounts.init();
     s3.init();

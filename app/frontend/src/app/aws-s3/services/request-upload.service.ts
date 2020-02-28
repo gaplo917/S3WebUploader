@@ -4,7 +4,7 @@ import { ConfirmUploadComponent } from '../confirm-upload/confirm-upload.compone
 import { UploadItem } from '../upload-item';
 import { ElectronService } from 'src/app/infrastructure/services/electron.service';
 import { S3Service } from './s3.service';
-import { IAccount } from '../../../../../model';
+import { IAccount } from '../../services/model'
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,8 @@ export class RequestUploadService {
       let files = items.map(_ => {
         return {
           filePath: _.path,
-          newPath: prefix + _.newName
+          newPath: prefix + _.newName,
+          file: _.file,
         }
       });
       this.s3.requestBulkUpload(account, bucket, prefix, files);

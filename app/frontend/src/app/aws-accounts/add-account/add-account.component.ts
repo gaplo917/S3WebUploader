@@ -26,8 +26,9 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
 
   toClose = new EventEmitter();
   loading = false;
-  private name = "";
-  private url = "";
+  private key = '';
+  private secret = '';
+  private url = '';
   private valid = false;
   private tested = false;
   constructor(
@@ -38,10 +39,14 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
 
   ngOnInit() {
     this.recordSubscription(this.accounts.AccountTestResult.subscribe(_ => {
-      if (_.account === this.name) {
+      if (_.account.id === this.key && _.account.secret === this.secret) {
         this.tested = true;
         this.valid = _.success;
         this.loading = false;
+
+        if(this.valid) {
+          this.addAccount()
+        }
       }
     }))
   }
@@ -55,9 +60,13 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
   }
 
   private testAccount() {
-    if (this.name) {
+    if (this.key) {
       this.loading = true;
-      this.accounts.testAccount(this.name, this.url);
+      this.accounts.testAccount({
+        id: this.key,
+        secret: this.secret,
+        url: this.url,
+      });
     }
   }
 
@@ -67,7 +76,17 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
   }
 
   private addAccount() {
-    this.accounts.addAccount(this.name, this.url);
+    this.accounts.addAccount({
+      id: this.key,
+      secret: this.secret,
+      url: this.url
+    });
     this.toClose.emit();
+  }
+
+  private fillInMinIODemo(){
+    this.key = 'Q3AM3UQ867SPQQA43P2F';
+    this.secret = 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG';
+    this.url = 'https://play.minio.io/';
   }
 }

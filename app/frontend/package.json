@@ -22,15 +22,16 @@
     "@angular/router": "~7.2.0",
     "@ng-select/ng-select": "^2.18.0",
     "angular2-datetimepicker": "^1.1.1",
-    "core-js": "^2.5.4",
-    "rxjs": "~6.3.3",
-    "tslib": "^1.9.0",
-    "zone.js": "~0.8.26",
     "angular2-draggable": "^2.1.7",
     "angular2-notifications": "^2.0.0",
+    "aws-sdk": "^2.628.0",
+    "core-js": "^2.5.4",
     "intl": "^1.2.5",
+    "rxjs": "~6.3.3",
+    "tslib": "^1.9.0",
     "uuid": "^3.3.2",
-    "web-animations-js": "^2.3.1"
+    "web-animations-js": "^2.3.1",
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",

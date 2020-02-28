@@ -6,9 +6,8 @@ import { S3Item } from 'src/app/aws-s3/s3-item';
 import { SelectionService } from 'src/app/tree-view/services/selection.service';
 import { collectFiles } from 'src/app/collectfiles';
 import { RequestUploadService } from 'src/app/aws-s3/services/request-upload.service';
-import { AnalyticsTracked } from 'src/app/infrastructure/analytics-tracked';
 import { AnalyticsService } from 'src/app/infrastructure/services/analytics.service';
-import { IAccount } from '../../../../../model';
+import { IAccount } from '../../services/model'
 
 @Component({
   selector: 'app-folder-browser',
@@ -18,7 +17,6 @@ import { IAccount } from '../../../../../model';
     './folder-browser.component.scss'
   ]
 })
-@AnalyticsTracked("FolderBrowserComponent")
 export class FolderBrowserComponent extends SubscriptionComponent implements OnInit {
 
   busy = false;
@@ -26,7 +24,7 @@ export class FolderBrowserComponent extends SubscriptionComponent implements OnI
   private draggedOver = false;
   private dragCount = 0;
   private items = [];
-  private currentPath = "";
+  private currentPath = '';
   private account: IAccount;
   constructor(
     private router: Router,
@@ -42,7 +40,7 @@ export class FolderBrowserComponent extends SubscriptionComponent implements OnI
   ngOnInit() {
     this.recordSubscription(this.route.url.subscribe(segments => {
       let segmentNames = segments.join('/');
-      this.currentPath = segmentNames;
+      this.currentPath = decodeURI(segmentNames);
       this.items = this.s3.getCachedItems(this.currentPath);
       this.account = this.s3.getCachedAccount(segments[0].path);
     }));

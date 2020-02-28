@@ -4,8 +4,8 @@
     min-height: 0;
     border-radius: 3px;
     background: white;
-    
-    
+
+
     .path-container {
         padding: 5px;
         border-bottom: 1px solid var(--secondary);
@@ -60,4 +60,9 @@
     width: 100%;
     border-radius: 3px;
     background: white;
+}
+.ion-ios-cloud-download {
+  &:hover {
+    color: orange;
+  }
 }

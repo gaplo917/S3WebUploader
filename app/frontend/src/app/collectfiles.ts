@@ -1,25 +1,21 @@
-import { UploadItem } from "./aws-s3/upload-item";
+import { UploadItem } from './aws-s3/upload-item';
 
 export function collectFiles(item, path, items: UploadItem[]): Promise<UploadItem[]> {
-    path = path || "";
+    path = path || '';
     if (item.isFile) {
         let p = new Promise<UploadItem[]>((resolve, reject) => {
             item.file(function (file) {
-                let item = {
-                    name: path + file.name,
-                    path: file.path
-                }
-                resolve([new UploadItem(item)]);
+                resolve([new UploadItem(file, path)]);
             });
         });
         return p;
     } else if (item.isDirectory) {
-        var dirReader = item.createReader();
+      let dirReader = item.createReader();
         let p = new Promise<UploadItem[]>((resolve, reject) => {
             let promises = [];
             dirReader.readEntries(function (entries) {
-                for (var i = 0; i < entries.length; i++) {
-                    promises.push(collectFiles(entries[i], path + item.name + "/", items));
+                for (let i = 0; i < entries.length; i++) {
+                    promises.push(collectFiles(entries[i], path + item.name + '/', items));
                 }
                 Promise.all(promises).then(results => {
                     results.forEach(r => {
@@ -31,6 +27,6 @@ export function collectFiles(item, path, items: UploadItem[]): Promise<UploadIte
         });
         return p;
     } else {
-        return Promise.reject("Not a file or directory");
+        return Promise.reject('Not a file or directory');
     }
 }

@@ -35,7 +35,7 @@ export class JobService {
       this.updateJobMessage(arg.id, arg.error);
     });
     this.electron.onCD('Jobs-Progress', (event, arg) => {
-      this.updatePercentage(arg.id, arg.percentage);
+      this.updatePercentage(arg.id, arg.percentage, arg.loaded, arg.total);
     });
   }
   clearNotRunningJobs() {
@@ -50,7 +50,7 @@ export class JobService {
     });
     this._jobs.next(this._jobList);
   }
-  createJob(type: JobType, id: string, from = "", to = "", localFile = ""): string {
+  createJob(type: JobType, id: string, from = '', to = '', localFile = ''): string {
     let newJob = new JobItem(id, type, JobStatus.Running, from, to, localFile);
     this._jobObj[id] = newJob;
     this._jobList.push(newJob);
@@ -67,9 +67,11 @@ export class JobService {
       this._jobObj[id].message = message;
     }
   }
-  updatePercentage(id: string, p: number) {
+  updatePercentage(id: string, p: number, loaded: number, total: number) {
     if (this._jobObj[id]) {
       this._jobObj[id].percentage = p;
+      this._jobObj[id].loaded = loaded;
+      this._jobObj[id].total = total;
     }
   }
   openJobFileLocation(id: string) {

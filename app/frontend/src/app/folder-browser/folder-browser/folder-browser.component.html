@@ -17,7 +17,7 @@
         (dragleave)="dragLeave($event)">
         <div class="item smooth-1" *ngFor="let item of items" (click)="onClick(item, $event)" (dblclick)="requestDownload(item, $event)">
           <div class="item-icon mr-2">
-            <i [class.ion-ios-folder]="item.type ==='folder'" [class.ion-ios-document]="item.type ==='file'"></i>
+            <i [class.ion-ios-folder]="item.type ==='folder'" [class.ion-ios-cloud-download]="item.type ==='file'" (click)="item.type ==='file' ? requestDownload(item, $event) : null"></i>
           </div>
           <div class="item-title mr-2">
             <small>{{item.name}}</small>

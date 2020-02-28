@@ -14,6 +14,9 @@
         <i class="ion-ios-arrow-round-forward ml-2 mr-2"></i>
         <div class="desc-text">{{destination}}</div>
       </div>
+      <div class="job-desc">
+        <div class="desc-text">({{(loaded / 1024 / 1024) | number:'1.1-1'}}MB/{{(total / 1024 / 1024) | number:'1.1-1'}}MB)</div>
+      </div>
       <div class="ml-2 progress-percentage" *ngIf="_jobstatus === 'r'" @ngIfAnimation>
         <span>{{percentage}}%</span>
       </div>

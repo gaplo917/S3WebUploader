@@ -10,4 +10,6 @@ export interface Job {
     to: string;
     localFile?: string;
     message?: string;
+    loaded: number;
+    total: number;
 }

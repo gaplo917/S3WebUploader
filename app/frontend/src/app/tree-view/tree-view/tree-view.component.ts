@@ -5,16 +5,13 @@ import { SubscriptionComponent } from 'src/app/infrastructure/subscription-compo
 import { S3Service } from 'src/app/aws-s3/services/s3.service';
 import { S3Item } from 'src/app/aws-s3/s3-item';
 import { SelectionService } from '../services/selection.service';
-import { AnalyticsTracked } from 'src/app/infrastructure/analytics-tracked';
-import { AnalyticsService } from 'src/app/infrastructure/services/analytics.service';
-import { IAccount } from '../../../../../model';
+import { IAccount } from '../../services/model'
 
 @Component({
   selector: 'app-tree-view',
   templateUrl: './tree-view.component.html',
   styleUrls: ['./tree-view.component.scss']
 })
-@AnalyticsTracked("TreeViewComponent")
 export class TreeViewComponent extends SubscriptionComponent implements OnInit {
 
   rootNodes: TreeNode[] = []
@@ -23,7 +20,6 @@ export class TreeViewComponent extends SubscriptionComponent implements OnInit {
     private awsAccounts: AccountsService,
     private s3Service: S3Service,
     private selection: SelectionService,
-    private analytics: AnalyticsService
   ) {
     super();
   }
@@ -110,7 +106,7 @@ export class TreeViewComponent extends SubscriptionComponent implements OnInit {
       let prefixes = parents.slice();
       prefixes.splice(0, 2);
       return new FolderNode(account, parents[1], prefixes.join('/'), item.name);
-    } else if(item.type ==='file') {
+    } else if(item.type === 'file') {
       let prefixes = parents.slice();
       prefixes.splice(0, 2);
       prefixes.push(item.name);
@@ -131,11 +127,11 @@ export class TreeViewComponent extends SubscriptionComponent implements OnInit {
 
   private getNode(start: TreeNode, path: string[], parents: TreeNode[] = []): {node: TreeNode, parents: TreeNode[]} {
     if (!path.length) {
-      return {node: start, parents: parents};    
+      return {node: start, parents: parents};
     } else {
       let itemName = path.shift();
       if (!itemName) {
-        return {node: start, parents: parents};    
+        return {node: start, parents: parents};
       } else if(!start.subItems) {
         return null;
       } else {

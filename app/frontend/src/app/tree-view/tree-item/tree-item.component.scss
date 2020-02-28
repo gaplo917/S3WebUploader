@@ -9,6 +9,14 @@
     flex-direction: column;
     cursor: pointer;
     position: relative;
+    .drop-target:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    .ion-ios-cloud-download {
+      &:hover {
+        color: orange;
+      }
+    }
     .tree-icon {
         flex-shrink: 0;
         display: flex;

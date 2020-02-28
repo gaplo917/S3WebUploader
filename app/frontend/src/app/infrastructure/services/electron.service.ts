@@ -1,4 +1,5 @@
 import { Injectable, ChangeDetectorRef, NgZone } from '@angular/core';
+import { MessageBus } from "../../services/message-bus";
 declare var electron: any;
 
 
@@ -7,12 +8,15 @@ export class ElectronService {
   private initialized = false;
   private ipcRenderer = null;
   constructor(
-    private zone: NgZone
+    private zone: NgZone,
+    private messageBus: MessageBus
   ) {
     if (electron) {
       this.ipcRenderer = electron.ipcRenderer;
       this.initialized = true;
     } else {
+      this.ipcRenderer = messageBus
+      this.initialized = true;
       console.warn('Electron not available');
     }
   }
@@ -29,7 +33,7 @@ export class ElectronService {
   }
 
   send(event: string, arg: any) {
-    electron.ipcRenderer.send(event, arg);
+    this.ipcRenderer.send(event, arg);
   }
 
   get available(): boolean {

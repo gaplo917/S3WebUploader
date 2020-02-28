@@ -11,7 +11,7 @@ export class UpdaterService {
   updateDownloadProgress: EventEmitter<number> = new EventEmitter<number>();
 
   private _updaterStatus: BehaviorSubject<UpdaterStatus> = new BehaviorSubject<UpdaterStatus>(UpdaterStatus.NoUpdateAvailable);
-  private _updateVersion: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  private _updateVersion: BehaviorSubject<string> = new BehaviorSubject<string>('');
   constructor(
     private electron: ElectronService,
     private noti: NotificationsService,
@@ -23,7 +23,7 @@ export class UpdaterService {
     this.electron.onCD('Updater', (event, arg) => {
       if (arg.msg === 'update-available') {
         // tslint:disable-next-line:max-line-length
-        let notification = this.noti.info("Update Available", "Click here to install update, the app will restart automatically to update", {
+        let notification = this.noti.info('Update Available', 'Click here to install update, the app will restart automatically to update', {
           timeOut: 5000
         });
         notification.click.subscribe(() => {
@@ -37,7 +37,7 @@ export class UpdaterService {
         this.updateDownloadProgress.emit(Math.floor(arg.percentage));
       } else if (arg.msg === 'download-complete') {
         this._updaterStatus.next(UpdaterStatus.InstallingUpdate);
-        this.noti.info("Installing Update", "The download has completed, starting installation...", {
+        this.noti.info('Installing Update', 'The download has completed, starting installation...', {
           timeOut: 7000
         });
         let that = this;
@@ -47,7 +47,7 @@ export class UpdaterService {
       }
     });
     this.electron.onCD('Updater-Checking', (event, arg) => {
-      if(arg.inProgress) {
+      if (arg.inProgress) {
         this._updaterStatus.next(UpdaterStatus.CheckingUpdate);
       }
     });

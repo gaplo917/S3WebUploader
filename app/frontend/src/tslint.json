@@ -13,6 +13,6 @@
             "app",
             "kebab-case"
         ],
-        "prefer-const": false,
+        "prefer-const": false
     }
 }

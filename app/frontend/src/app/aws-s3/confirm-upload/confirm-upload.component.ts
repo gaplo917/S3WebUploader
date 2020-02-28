@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { S3Service } from '../services/s3.service';
 import { UploadItem } from '../upload-item';
-import { IAccount } from '../../../../../model';
+import { IAccount } from '../../services/model'
 
 @Component({
   selector: 'app-confirm-upload',
@@ -15,8 +15,8 @@ export class ConfirmUploadComponent implements OnInit {
 
   isValid = true;
   account: IAccount;
-  bucket = "";
-  prefix = "";
+  bucket = '';
+  prefix = '';
   promptSetting = true;
   Items: UploadItem[] = [];
   toClose: EventEmitter<{}> = new EventEmitter();
@@ -36,7 +36,8 @@ export class ConfirmUploadComponent implements OnInit {
       let files = this.Items.map(_ => {
         return {
           filePath: _.path,
-          newPath: this.prefix + _.newName
+          newPath: this.prefix + _.newName,
+          file: _.file
         }
       });
       this.s3.requestBulkUpload(this.account, this.bucket, this.prefix, files);
@@ -47,7 +48,7 @@ export class ConfirmUploadComponent implements OnInit {
     this.Items.splice(this.Items.indexOf(item), 1);
   }
   private location() {
-    return [this.account, this.bucket, this.prefix].join('/');
+    return [this.account.url, this.bucket, this.prefix].join('/');
   }
   private onTextChange() {
     if (this.Items.length === 0) {

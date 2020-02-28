@@ -4,7 +4,7 @@ import { S3Item } from '../s3-item';
 import * as uuid from 'uuid';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AnalyticsService } from 'src/app/infrastructure/services/analytics.service';
-import { IAccount } from '../../../../../model';
+import { IAccount } from '../../services/model'
 
 @Injectable({
   providedIn: 'root'
@@ -119,7 +119,8 @@ export class S3Service {
   listBuckets(account: IAccount) {
     this.electron.send('S3-ListBuckets', account);
   }
-  listObjects(account: IAccount, bucket: string, prefix = "") {
+
+  listObjects(account: IAccount, bucket: string, prefix = '') {
     this.electron.send('S3-ListObjects', { account: account, bucket: bucket, prefix: prefix });
   }
 
@@ -130,7 +131,7 @@ export class S3Service {
     return id.toString();
   }
 
-  requestBulkUpload(account: IAccount, bucket: string, prefix: string, items: Array<{ filePath: string, newPath: string }>) {
+  requestBulkUpload(account: IAccount, bucket: string, prefix: string, items: Array<{ filePath: string, newPath: string, file: any }>) {
     let files = items.map(item => {
       let id = uuid.v4();
       return {
@@ -139,6 +140,7 @@ export class S3Service {
         filePath: item.filePath,
         newPath: item.newPath,
         jobID: id,
+        file: item.file
       }
     });
     this.electron.send('S3-RequestBulkUpload', {

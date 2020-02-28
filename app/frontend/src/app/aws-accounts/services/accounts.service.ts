@@ -1,14 +1,14 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { ElectronService } from 'src/app/infrastructure/services/electron.service';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { IAccount } from '../../../../../model';
+import { IAccount } from '../../services/model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountsService {
 
-  AccountTestResult: EventEmitter<{ account: string, success: boolean }> = new EventEmitter<{ account: string, success: boolean }>();
+  AccountTestResult: EventEmitter<{ account: IAccount, success: boolean }> = new EventEmitter<{ account: IAccount, success: boolean }>();
   InitializingAccount: EventEmitter<{}> = new EventEmitter();
   Accounts: Observable<IAccount[]>
   private _accounts = new BehaviorSubject<IAccount[]>([])
@@ -40,31 +40,32 @@ export class AccountsService {
     });
     this.electron.onCD('AWS-CredentialFound', (event: string, arg: IAccount) => {
       this.AccountTestResult.emit({
-        account: arg.id,
+        account: arg,
         success: true
       });
     });
     this.electron.onCD('AWS-CredentialNotFound', (event: string, arg: IAccount) => {
       this.AccountTestResult.emit({
-        account: arg.id,
+        account: arg,
         success: false
       });
     });
   }
 
-  testAccount(account: string, url: string) {
-    this.electron.send('AWS-TestAccount', { id: account, url: url });
+  testAccount(account: IAccount) {
+    this.electron.send('AWS-TestAccount', account);
   }
 
   openAWSCredentialHelp() {
-    this.electron.send('Application-OpenExternal', { address: "https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/loading-node-credentials-shared.html" });
+    // tslint:disable-next-line:max-line-length
+    this.electron.send('Application-OpenExternal', { address: 'https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/loading-node-credentials-shared.html' });
   }
 
   openAWSS3Pricing() {
     this.electron.send('Application-OpenExternal', { address: 'https://aws.amazon.com/s3/pricing/' });
   }
 
-  addAccount(account: string, url = "") {
-    this.electron.send('Accounts-AddAccount', { id: account, url: url });
+  addAccount(account: IAccount) {
+    this.electron.send('Accounts-AddAccount', account);
   }
 }

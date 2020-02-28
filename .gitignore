@@ -7,3 +7,4 @@ tests/tmp
 test-results
 mac-publish.sh
 windows-publish.ps1
+.idea

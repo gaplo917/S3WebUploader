@@ -1,7 +1,7 @@
-import { S3Service } from "../aws-s3/services/s3.service";
-import { RequestUploadService } from "../aws-s3/services/request-upload.service";
-import { UploadItem } from "../aws-s3/upload-item";
-import { IAccount } from "../../../../model";
+import { S3Service } from '../aws-s3/services/s3.service';
+import { RequestUploadService } from '../aws-s3/services/request-upload.service';
+import { UploadItem } from '../aws-s3/upload-item';
+import { IAccount } from '../services/model'
 
 export interface TreeNode {
     name?: string;
@@ -26,7 +26,7 @@ export abstract class S3ActionNode implements TreeNode {
     subItems: TreeNode[] = [];
     busy = false;
     expand = false;
-    get path() { return ""; }
+    get path() { return ''; }
     refresh(service: S3Service) {
     };
     action(service: S3Service) {
@@ -42,7 +42,7 @@ export abstract class S3ActionNode implements TreeNode {
 export class AccountNode extends S3ActionNode {
     enumerated = true;
     private url: string;
-    constructor(acc: IAccount) {
+    constructor(private acc: IAccount) {
         super(acc.id, TreeNodeType.Account);
         this.url = acc.url;
     }
@@ -52,10 +52,7 @@ export class AccountNode extends S3ActionNode {
     refresh(service: S3Service) {
         if (service) {
             this.busy = true;
-            service.listBuckets({
-                id: this.name,
-                url: this.url,
-            });
+            service.listBuckets(this.acc);
         }
     }
 }
@@ -72,7 +69,7 @@ export class BucketNode extends S3ActionNode {
     }
     dropAction(service: RequestUploadService, files: UploadItem[]) {
         if (service) {
-            service.requestUpload(this.account, this.name, "", files);
+            service.requestUpload(this.account, this.name, '', files);
         }
     }
     refresh(service: S3Service) {

@@ -22,6 +22,9 @@ import { trigger, transition, query, stagger, animate, keyframes, style } from '
 export class JobItemComponent implements OnInit {
 
   @Input() percentage = 50;
+  @Input() loaded = 0; // in byte
+  @Input() total = 0; // in byte
+
   @Input() set jobType(v: JobType) {
     this.setJobType(v);
   }
