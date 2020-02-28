@@ -1,0 +1,7 @@
+/node_modules
+/src/scss/vendors
+/src/app/shared/vendor
+/e2e
+/**/*.spec.ts
+main.ts
+polyfills.ts

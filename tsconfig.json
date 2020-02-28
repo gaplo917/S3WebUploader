@@ -1,26 +1,21 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "noImplicitAny": false,
-        "sourceMap": true,
-        "outDir": "dist/",
-        "target": "es5",
-        "baseUrl": ".",
-        "lib": ["es5", "es6", "dom"],
-        "paths": {
-            "*": [
-                "node_modules/*"
-            ]
-        },
-        "downlevelIteration": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-    },
-    "include": [
-        "app/**/*"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
     ],
-    "exclude": [
-        "app/frontend/*",
-        "app/tests/*"
+    "lib": [
+      "es2017",
+      "dom"
     ]
+  }
 }
