@@ -57,8 +57,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.eHistoryStorage.initialize()
-    this.eAccount.initialize()
+    // wait for completely rendered
+    requestAnimationFrame(() => {
+      this.eHistoryStorage.initialize()
+      this.eAccount.initialize()
+    })
   }
 
   disable(event) {
