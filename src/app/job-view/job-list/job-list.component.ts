@@ -28,7 +28,7 @@ import { Job } from '../job'
   ],
 })
 export class JobListComponent extends SubscriptionComponent implements OnInit {
-  private jobList = []
+  jobList = []
   constructor(private jobs: JobService) {
     super()
   }
@@ -41,19 +41,19 @@ export class JobListComponent extends SubscriptionComponent implements OnInit {
     )
   }
 
-  private trackJob(index: number, elem: Job) {
+  trackJob(index: number, elem: Job) {
     return elem ? elem.id : null
   }
 
-  private deleteJob(j: Job) {
+  deleteJob(j: Job) {
     this.jobList.splice(this.jobList.indexOf(j), 1)
   }
 
-  private openJobFileLication(j: Job) {
+  openJobFileLication(j: Job) {
     this.jobs.openJobFileLocation(j.id)
   }
 
-  private stopJob(j: Job) {
+  stopJob(j: Job) {
     this.jobs.stopJob(j.id)
   }
 }

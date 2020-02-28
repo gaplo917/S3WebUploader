@@ -11,7 +11,7 @@ export class FileInfoComponent implements OnInit {
     this._item = v
   }
 
-  private _item: S3Item
+  _item: S3Item
   constructor() {}
 
   ngOnInit() {}

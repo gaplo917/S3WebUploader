@@ -17,14 +17,14 @@ import { AnalyticsTracked } from '../infrastructure/analytics-tracked'
 })
 @AnalyticsTracked('SettingsPageComponent')
 export class SettingsPageComponent extends SubscriptionComponent implements OnInit {
-  private requestCounts: any
-  private promptUpload = true
-  private downloadPath = ''
-  private updaterStatus = UpdaterStatus.NoUpdateAvailable
-  private UpdaterStatusEnum = UpdaterStatus
-  private updateVersion = ''
-  private updateDownloadProgress = 0
-  private optInAnalytics = false
+  requestCounts: any
+  promptUpload = true
+  downloadPath = ''
+  updaterStatus = UpdaterStatus.NoUpdateAvailable
+  UpdaterStatusEnum = UpdaterStatus
+  updateVersion = ''
+  updateDownloadProgress = 0
+  optInAnalytics = false
   constructor(
     private router: Router,
     private s3: S3Service,

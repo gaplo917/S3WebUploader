@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
     this.analytics.logEvent('Application', 'Initialize')
   }
 
-  private disable(event) {
+  disable(event) {
     event.preventDefault()
     return false
   }

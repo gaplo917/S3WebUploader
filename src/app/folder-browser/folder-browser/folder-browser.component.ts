@@ -16,12 +16,12 @@ import { IAccount } from '../../services/model'
 })
 export class FolderBrowserComponent extends SubscriptionComponent implements OnInit {
   busy = false
-  private selectedFile: S3Item
-  private draggedOver = false
-  private dragCount = 0
-  private items = []
-  private currentPath = ''
-  private account: IAccount
+  selectedFile: S3Item
+  draggedOver = false
+  dragCount = 0
+  items = []
+  currentPath = ''
+  account: IAccount
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -95,7 +95,7 @@ export class FolderBrowserComponent extends SubscriptionComponent implements OnI
     }
   }
 
-  private getSizeString(item: S3Item) {
+  getSizeString(item: S3Item) {
     if (item && item.size) {
       const mb = item.size / 1024 / 1024
       const kb = item.size / 1024
@@ -109,7 +109,7 @@ export class FolderBrowserComponent extends SubscriptionComponent implements OnI
     }
   }
 
-  private drop(event) {
+  drop(event) {
     this.dragCount = 0
     this.draggedOver = false
     if (event.dataTransfer) {
@@ -133,14 +133,14 @@ export class FolderBrowserComponent extends SubscriptionComponent implements OnI
     return false
   }
 
-  private dragEnter(event) {
+  dragEnter(event) {
     this.draggedOver = true
     this.dragCount += 1
     event.preventDefault()
     return false
   }
 
-  private dragLeave(event) {
+  dragLeave(event) {
     this.dragCount -= 1
     if (this.dragCount <= 0) {
       this.draggedOver = false
@@ -150,7 +150,7 @@ export class FolderBrowserComponent extends SubscriptionComponent implements OnI
     return false
   }
 
-  private getS3Parameters(): { account: string; bucket: string; prefix: string } {
+  getS3Parameters(): { account: string; bucket: string; prefix: string } {
     const path = this.currentPath.split('/')
     if (path.length >= 2) {
       const account = path[0]

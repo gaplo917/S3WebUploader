@@ -14,7 +14,7 @@ import { SubscriptionComponent } from 'src/app/infrastructure/subscription-compo
 export class TreeItemComponent extends SubscriptionComponent implements OnInit {
   @Input() item: TreeNode
   @Input() loading = false
-  private draggedOver = false
+  draggedOver = false
   private _nodetype = ''
   private dragCount = 0
 
@@ -32,7 +32,7 @@ export class TreeItemComponent extends SubscriptionComponent implements OnInit {
     )
   }
 
-  private onRefresh(event) {
+  onRefresh(event) {
     if (this.item as S3ActionNode) {
       this.item.subItems = []
       ;(this.item as S3ActionNode).refresh(this.s3)
@@ -40,14 +40,14 @@ export class TreeItemComponent extends SubscriptionComponent implements OnInit {
     event.stopPropagation()
   }
 
-  private onDblClick(event) {
+  onDblClick(event) {
     event.stopPropagation()
     if (this.item as S3ActionNode) {
       ;(this.item as S3ActionNode).action(this.s3)
     }
   }
 
-  private onClick(event) {
+  onClick(event) {
     if (this.item instanceof BucketNode || this.item instanceof FolderNode) {
       const node = this.item as BucketNode | FolderNode
       node.expand = true
@@ -60,7 +60,7 @@ export class TreeItemComponent extends SubscriptionComponent implements OnInit {
     event.stopPropagation()
   }
 
-  private onExpand(event) {
+  onExpand(event) {
     if (this.item) {
       this.item.expand = !this.item.expand
       const node = this.item as BucketNode | FolderNode | AccountNode
@@ -72,7 +72,7 @@ export class TreeItemComponent extends SubscriptionComponent implements OnInit {
     event.stopPropagation()
   }
 
-  private getNodeType() {
+  getNodeType() {
     if (this.item && this.item.type !== undefined) {
       if (this.item.type === TreeNodeType.Account) {
         return 'a'
@@ -88,7 +88,7 @@ export class TreeItemComponent extends SubscriptionComponent implements OnInit {
     }
   }
 
-  private drop(event) {
+  drop(event) {
     if (this.isDroppable()) {
       this.dragCount = 0
       this.draggedOver = false
@@ -114,7 +114,7 @@ export class TreeItemComponent extends SubscriptionComponent implements OnInit {
     return false
   }
 
-  private dragEnter(event) {
+  dragEnter(event) {
     if (this.isDroppable()) {
       this.draggedOver = true
       this.dragCount += 1
@@ -123,7 +123,7 @@ export class TreeItemComponent extends SubscriptionComponent implements OnInit {
     return false
   }
 
-  private dragLeave(event) {
+  dragLeave(event) {
     if (this.isDroppable()) {
       this.dragCount -= 1
       if (this.dragCount <= 0) {

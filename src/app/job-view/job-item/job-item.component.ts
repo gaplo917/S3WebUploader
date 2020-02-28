@@ -38,8 +38,8 @@ export class JobItemComponent implements OnInit {
   @Output() toDelete: EventEmitter<{}> = new EventEmitter()
   @Output() toOpen: EventEmitter<{}> = new EventEmitter()
   @Output() toStop: EventEmitter<{}> = new EventEmitter()
-  private _jobtype = ''
-  private _jobstatus = ''
+  _jobtype = ''
+  _jobstatus = ''
   constructor() {
     this.jobType = JobType.Upload
     this.jobStatus = JobStatus.Running
@@ -47,7 +47,7 @@ export class JobItemComponent implements OnInit {
 
   ngOnInit() {}
 
-  private setJobType(j: JobType) {
+  setJobType(j: JobType) {
     if (j === JobType.Download) {
       this._jobtype = 'download'
     } else {
@@ -55,7 +55,7 @@ export class JobItemComponent implements OnInit {
     }
   }
 
-  private setJobStatus(j: JobStatus) {
+  setJobStatus(j: JobStatus) {
     if (j === JobStatus.Completed) {
       this._jobstatus = 'c'
     } else if (j === JobStatus.Failed) {
@@ -65,17 +65,17 @@ export class JobItemComponent implements OnInit {
     }
   }
 
-  private onDeleteJob(event) {
+  onDeleteJob(event) {
     this.toDelete.emit()
     event.stopPropagation()
   }
 
-  private onOpenFileLocation(event) {
+  onOpenFileLocation(event) {
     this.toOpen.emit()
     event.stopPropagation()
   }
 
-  private onStopJob(event) {
+  onStopJob(event) {
     this.toStop.emit()
     event.stopPropagation()
   }

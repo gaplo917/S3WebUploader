@@ -22,11 +22,11 @@ import { SubscriptionComponent } from 'src/app/infrastructure/subscription-compo
 export class AddAccountComponent extends SubscriptionComponent implements OnInit {
   toClose = new EventEmitter()
   loading = false
-  private key = ''
-  private secret = ''
-  private url = ''
-  private valid = false
-  private tested = false
+  key = ''
+  secret = ''
+  url = ''
+  valid = false
+  tested = false
   constructor(private accounts: AccountsService) {
     super()
   }
@@ -47,11 +47,11 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
     )
   }
 
-  private close() {
+  close() {
     this.toClose.emit()
   }
 
-  private testAccount() {
+  testAccount() {
     if (this.key) {
       this.loading = true
       this.accounts.testAccount({
@@ -62,12 +62,12 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
     }
   }
 
-  private onTextChange() {
+  onTextChange() {
     this.tested = false
     this.valid = false
   }
 
-  private addAccount() {
+  addAccount() {
     this.accounts.addAccount({
       id: this.key,
       secret: this.secret,
@@ -76,7 +76,7 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
     this.toClose.emit()
   }
 
-  private fillInMinIODemo() {
+  fillInMinIODemo() {
     this.key = 'Q3AM3UQ867SPQQA43P2F'
     this.secret = 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG'
     this.url = 'https://play.minio.io/'

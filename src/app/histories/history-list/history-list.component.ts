@@ -8,7 +8,7 @@ import { SubscriptionComponent } from 'src/app/infrastructure/subscription-compo
   styleUrls: ['./history-list.component.scss'],
 })
 export class HistoryListComponent extends SubscriptionComponent implements OnInit {
-  private entries: Array<{ type: string; name: string; time: string; status: string }> = []
+  entries: Array<{ type: string; name: string; time: string; status: string }> = []
   constructor(private histories: HistoriesService) {
     super()
   }

@@ -8,7 +8,7 @@ import { AnalyticsService } from '../services/analytics.service'
 })
 export class AnalyticsConsentComponent implements OnInit {
   toClose = new EventEmitter()
-  private optIn = true
+  optIn = true
   constructor(private analytics: AnalyticsService) {}
 
   ngOnInit() {}

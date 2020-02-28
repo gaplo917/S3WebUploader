@@ -13,11 +13,11 @@ export class TooltipComponent implements OnInit {
   @Input() delay: number
   @ViewChild('tp') private tp: ElementRef
   @ViewChild('arrow') private arrow: ElementRef
-  private aX = '0'
-  private X = '0'
-  private aY = '0'
-  private Y = '0'
-  private show = false
+  aX = '0'
+  X = '0'
+  aY = '0'
+  Y = '0'
+  show = false
   private get boundingRect() {
     return this.tp.nativeElement.getBoundingClientRect()
   }

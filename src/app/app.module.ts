@@ -21,7 +21,6 @@ import { FolderBrowserComponent } from './folder-browser/folder-browser/folder-b
 import { HistoriesModule } from './histories/histories.module'
 import { AwsS3Module } from './aws-s3/aws-s3.module'
 import { AnalyticsExceptionHandler } from './infrastructure/analytics-exceptions'
-import { HttpClientModule } from '@angular/common/http'
 
 const routes: Routes = [
   { path: 'home', component: WelcomePageComponent },

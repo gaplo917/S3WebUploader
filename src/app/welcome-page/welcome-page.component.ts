@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { AccountsService } from '../aws-accounts/services/accounts.service'
 import { DomService } from '../infrastructure/services/dom.service'
-import { AddAccountComponent } from '../aws-accounts/add-account/add-account.component'
 import { Router } from '@angular/router'
 import { UpdaterService, UpdaterStatus } from '../infrastructure/services/updater.service'
 import { SubscriptionComponent } from '../infrastructure/subscription-component'

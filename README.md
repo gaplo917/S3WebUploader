@@ -22,13 +22,20 @@ So, I decided to rewrite it completely to a browser-compatible version\*.
 ```
 # development
 yarn install
-ng serve
+yarn start
 
 # Test
-ng test
+yarn test
+
+# Liniting
+yarn lint
 
 # production build
-ng build
+yarn build
+
+# production build if have base path like GitHub Pages
+yarn build --base-href="/S3WebUploader/"
+
 ```
 
 ## Credit

@@ -42,11 +42,11 @@ export class ConfirmUploadComponent implements OnInit {
     this.Items.splice(this.Items.indexOf(item), 1)
   }
 
-  private location() {
+  location() {
     return [this.account && this.account.url, this.bucket, this.prefix].join('/')
   }
 
-  private onTextChange() {
+  onTextChange() {
     if (this.Items.length === 0) {
       this.isValid = false
     } else {
@@ -60,7 +60,7 @@ export class ConfirmUploadComponent implements OnInit {
     }
   }
 
-  private changePromptSetting(val: boolean) {
+  changePromptSetting(val: boolean) {
     this.s3.changeUploadPromptSetting(val)
   }
 }
