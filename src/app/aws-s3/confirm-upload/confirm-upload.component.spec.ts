@@ -27,12 +27,12 @@ describe('ConfirmUploadComponent', () => {
     expect(component).toBeTruthy()
   })
   it('should display all upload items', () => {
-    component.Items = [new UploadItem({ name: 'hi', path: 'hi' }), new UploadItem({ name: 'hi123', path: 'hi' })]
+    component.Items = [new UploadItem({ name: 'hi' }, 'hi'), new UploadItem({ name: 'hi123' }, 'hi')]
     fixture.detectChanges()
     expect(fixture.nativeElement.querySelectorAll('form input[type="text"]').length).toBe(2)
   })
   it('should check all item validity on text change', fakeAsync(() => {
-    component.Items = [new UploadItem({ name: 'hi', path: 'hi' }), new UploadItem({ name: 'hi123', path: 'hi' })]
+    component.Items = [new UploadItem({ name: 'hi' }, 'hi'), new UploadItem({ name: 'hi123' }, 'hi')]
     fixture.detectChanges()
     tick()
     let element = fixture.nativeElement.querySelector('form input[type="text"]')

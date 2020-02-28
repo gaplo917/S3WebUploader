@@ -57,17 +57,6 @@ export class AccountsService {
     this.electron.send('AWS-TestAccount', account)
   }
 
-  openAWSCredentialHelp() {
-    // tslint:disable-next-line:max-line-length
-    this.electron.send('Application-OpenExternal', {
-      address: 'https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/loading-node-credentials-shared.html',
-    })
-  }
-
-  openAWSS3Pricing() {
-    this.electron.send('Application-OpenExternal', { address: 'https://aws.amazon.com/s3/pricing/' })
-  }
-
   addAccount(account: IAccount) {
     this.electron.send('Accounts-AddAccount', account)
   }

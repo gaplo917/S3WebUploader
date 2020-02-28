@@ -40,7 +40,7 @@ describe('AddAccountComponent', () => {
     expect(fixture.nativeElement.querySelector('#cred-not-found')).toBeNull()
   })
   it('should enable test button when name entered', fakeAsync(() => {
-    let element = fixture.nativeElement.querySelector("input[name='account-name']")
+    let element = fixture.nativeElement.querySelector("input[name='account-key']")
     element.value = 'hi'
     element.dispatchEvent(new Event('input'))
     fixture.detectChanges()
@@ -59,7 +59,7 @@ describe('AddAccountComponent', () => {
     let accs = TestBed.get(AccountsService) as AccountsService
     let spy = spyOn(accs, 'testAccount').and.callThrough()
 
-    let element = fixture.nativeElement.querySelector("input[name='account-name']")
+    let element = fixture.nativeElement.querySelector("input[name='account-key']")
     element.value = 'hi'
     element.dispatchEvent(new Event('input'))
     fixture.detectChanges()
@@ -71,11 +71,11 @@ describe('AddAccountComponent', () => {
   it('should display credential found and addAccount when test account successful', () => {
     let accs = TestBed.get(AccountsService) as AccountsService
     accs.AccountTestResult.emit({
-      account: '',
+      account: { id: '', secret: '', url: '' },
       success: true,
     })
     fixture.detectChanges()
-    let element = fixture.nativeElement.querySelector("input[name='account-name']")
+    let element = fixture.nativeElement.querySelector("input[name='account-key']")
     fixture.whenRenderingDone().then(() => {
       expect(element.classList).toContain('is-valid')
     })
@@ -83,11 +83,11 @@ describe('AddAccountComponent', () => {
   it('should display credentialnot found and addAccount when test account failed', () => {
     let accs = TestBed.get(AccountsService) as AccountsService
     accs.AccountTestResult.emit({
-      account: '',
+      account: { id: '', secret: '', url: '' },
       success: false,
     })
     fixture.detectChanges()
-    let element = fixture.nativeElement.querySelector("input[name='account-name']")
+    let element = fixture.nativeElement.querySelector("input[name='account-key']")
     fixture.whenRenderingDone().then(() => {
       expect(element.classList).toContain('is-invalid')
     })
@@ -95,11 +95,11 @@ describe('AddAccountComponent', () => {
   it('should be back to non-valid state on text change', fakeAsync(() => {
     let accs = TestBed.get(AccountsService) as AccountsService
     accs.AccountTestResult.emit({
-      account: '',
+      account: { id: '', secret: '', url: '' },
       success: true,
     })
     fixture.detectChanges()
-    let element = fixture.nativeElement.querySelector("input[name='account-name']")
+    let element = fixture.nativeElement.querySelector("input[name='account-key']")
     element.value = 'hi123'
     element.dispatchEvent(new Event('input'))
     fixture.detectChanges()
@@ -107,19 +107,5 @@ describe('AddAccountComponent', () => {
     expect(fixture.nativeElement.querySelector('#cred-found')).toBe(null)
     expect(fixture.nativeElement.querySelector('#add-account-container')).toBe(null)
     expect(fixture.nativeElement.querySelector('#test-btn')).not.toBeNull()
-  }))
-  it('should delegate to accountService on addAccount', fakeAsync(() => {
-    let accs = TestBed.get(AccountsService) as AccountsService
-    let element = fixture.nativeElement.querySelector("input[name='account-name']")
-    let spy = spyOn(accs, 'addAccount')
-    element.value = 'hi123'
-    element.dispatchEvent(new Event('input'))
-    accs.AccountTestResult.emit({
-      account: 'hi123',
-      success: true,
-    })
-    fixture.detectChanges()
-    fixture.nativeElement.querySelector('#add-account-btn').click()
-    expect(spy).toHaveBeenCalled()
   }))
 })

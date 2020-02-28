@@ -43,7 +43,7 @@ export class ConfirmUploadComponent implements OnInit {
   }
 
   private location() {
-    return [this.account.url, this.bucket, this.prefix].join('/')
+    return [this.account && this.account.url, this.bucket, this.prefix].join('/')
   }
 
   private onTextChange() {

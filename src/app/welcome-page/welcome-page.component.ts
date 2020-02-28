@@ -44,23 +44,4 @@ export class WelcomePageComponent extends SubscriptionComponent implements OnIni
       }),
     )
   }
-
-  openAWSCredHelp() {
-    this.accounts.openAWSCredentialHelp()
-  }
-
-  openAddAccountWindow() {
-    const elem = this.dom.appendComponentToBody(AddAccountComponent)
-    elem.instance.toClose.subscribe(_ => {
-      elem.destroy()
-    })
-  }
-
-  openAWSS3Pricing() {
-    this.accounts.openAWSS3Pricing()
-  }
-
-  goToSettings() {
-    this.router.navigateByUrl('/settings')
-  }
 }

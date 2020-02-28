@@ -21,7 +21,6 @@ import { FolderBrowserComponent } from './folder-browser/folder-browser/folder-b
 import { HistoriesModule } from './histories/histories.module'
 import { AwsS3Module } from './aws-s3/aws-s3.module'
 import { AnalyticsExceptionHandler } from './infrastructure/analytics-exceptions'
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger'
 import { HttpClientModule } from '@angular/common/http'
 
 const routes: Routes = [
@@ -81,8 +80,6 @@ const routes: Routes = [
     RequestTrackingModule,
     FolderBrowserModule,
     HistoriesModule,
-    HttpClientModule,
-    LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR }),
   ],
   providers: [
     {

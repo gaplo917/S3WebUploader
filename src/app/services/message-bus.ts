@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-import { NGXLogger } from 'ngx-logger'
 
 @Injectable({
   providedIn: 'root',
@@ -7,18 +6,20 @@ import { NGXLogger } from 'ngx-logger'
 export class MessageBus {
   private map = new Map<string, any[]>()
 
-  constructor(private logger: NGXLogger) {}
+  constructor() {}
 
   public send(key, data): void {
     const cbs = this.map.get(key)
     if (cbs !== undefined) {
-      this.logger.debug(`Publishing channel ${key} ${JSON.stringify(data)}`)
+      // eslint-disable-next-line no-console
+      console.debug(`Publishing channel ${key} ${JSON.stringify(data)}`)
       cbs.forEach(it => it(key, data))
     }
   }
 
   public on(key: string, cb: any): void {
-    this.logger.debug(`Subscribing channel ${key}`)
+    // eslint-disable-next-line no-console
+    console.debug(`Subscribing channel ${key}`)
 
     const cbs = this.map.get(key)
     if (cbs === undefined) {

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core
 import { FolderBrowserComponent } from './folder-browser.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { Router, ActivatedRoute, Route } from '@angular/router'
-import { Observable, of, BehaviorSubject } from 'rxjs'
+import { Observable, of, BehaviorSubject, Subject } from 'rxjs'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
 import { AwsS3Module } from 'src/app/aws-s3/aws-s3.module'
 import { S3Service } from 'src/app/aws-s3/services/s3.service'
@@ -25,7 +25,7 @@ const routes: Route[] = [
 ]
 
 const mockRoute = {
-  url: new BehaviorSubject([]),
+  url: new Subject(),
 }
 
 describe('FolderBrowserComponent', () => {
@@ -85,6 +85,7 @@ describe('FolderBrowserComponent', () => {
     component.busy = true
     let svc = TestBed.get(S3Service) as S3Service
     svc.ItemsEnumerated.emit({
+      account: { id: 'hi', secret: '', url: '' },
       parents: ['hi', '123'],
       items: [],
     })
@@ -96,6 +97,7 @@ describe('FolderBrowserComponent', () => {
     let svc = TestBed.get(S3Service) as S3Service
 
     svc.ItemsEnumerated.emit({
+      account: { id: 'hi', secret: '', url: '' },
       parents: ['hi', '123'],
       items: [
         {
@@ -110,13 +112,14 @@ describe('FolderBrowserComponent', () => {
     expect(fixture.nativeElement.querySelectorAll('.items-container .item').length).toBe(1)
     expect(fixture.nativeElement.querySelector('.item-size').innerHTML).toContain('1 MB')
     expect(fixture.nativeElement.querySelector('.item-title').innerHTML).toContain('23')
-    expect(fixture.nativeElement.querySelector('.item-icon i').classList).toContain('ion-ios-document')
+    expect(fixture.nativeElement.querySelector('.item-icon i').classList).toContain('ion-ios-cloud-download')
   })
   it('should not display items emitted on ItemsEnumerated with mismatching path', () => {
     mockRoute.url.next(['hi', '123'])
     let svc = TestBed.get(S3Service) as S3Service
 
     svc.ItemsEnumerated.emit({
+      account: { id: 'hi', secret: '', url: '' },
       parents: ['hi'],
       items: [
         {
@@ -141,11 +144,10 @@ describe('FolderBrowserComponent', () => {
       objects: [
         {
           name: '23',
-          type: 'folder',
+          type: 'file',
         },
       ],
     })
-    fixture = TestBed.createComponent(FolderBrowserComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
     expect(fixture.nativeElement.querySelectorAll('.items-container .item').length).toBe(1)
@@ -156,6 +158,7 @@ describe('FolderBrowserComponent', () => {
     let sel = TestBed.get(SelectionService) as SelectionService
     let spy = spyOn(sel, 'selectItem')
     svc.ItemsEnumerated.emit({
+      account: { id: 'hi', secret: '', url: '' },
       parents: ['hi', '123'],
       items: [
         {
@@ -175,6 +178,7 @@ describe('FolderBrowserComponent', () => {
     let svc = TestBed.get(S3Service) as S3Service
     let spy = spyOn(svc, 'requestDownload')
     svc.ItemsEnumerated.emit({
+      account: { id: 'hi', secret: '', url: '' },
       parents: ['hi', '123'],
       items: [
         {
@@ -226,6 +230,7 @@ describe('FolderBrowserComponent', () => {
     mockRoute.url.next(['hi', '123'])
     let svc = TestBed.get(S3Service) as S3Service
     svc.ItemsEnumerated.emit({
+      account: { id: 'hi', secret: '', url: '' },
       parents: ['hi', '123'],
       items: [
         {

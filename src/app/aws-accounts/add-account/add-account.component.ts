@@ -51,10 +51,6 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
     this.toClose.emit()
   }
 
-  private openCredentialHelp() {
-    this.accounts.openAWSCredentialHelp()
-  }
-
   private testAccount() {
     if (this.key) {
       this.loading = true

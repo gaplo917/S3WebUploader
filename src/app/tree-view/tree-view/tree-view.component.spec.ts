@@ -5,18 +5,18 @@ import { TreeItemComponent } from '../tree-item/tree-item.component'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
 import { AwsAccountsModule } from 'src/app/aws-accounts/aws-accounts.module'
 import { AccountsService } from 'src/app/aws-accounts/services/accounts.service'
-import { Observable, BehaviorSubject } from 'rxjs'
-import { AWSAccount } from 'src/app/aws-accounts/aws-account'
+import { BehaviorSubject } from 'rxjs'
 import { S3Service } from 'src/app/aws-s3/services/s3.service'
 import { AwsS3Module } from 'src/app/aws-s3/aws-s3.module'
 import { FolderNode, BucketNode, FileNode } from '../tree-node'
 import { RouterTestingModule } from '@angular/router/testing'
 import { SelectionService } from '../services/selection.service'
+import { IAccount } from '../../services/model'
 
 describe('TreeViewComponent', () => {
   let component: TreeViewComponent
   let fixture: ComponentFixture<TreeViewComponent>
-  let accs: BehaviorSubject<AWSAccount[]>
+  let accs: BehaviorSubject<IAccount[]>
   let accSvc: AccountsService
   let s3Svc: S3Service
   beforeEach(async(() => {
@@ -29,7 +29,7 @@ describe('TreeViewComponent', () => {
   beforeEach(() => {
     accSvc = TestBed.get(AccountsService) as AccountsService
     s3Svc = TestBed.get(S3Service) as S3Service
-    accs = new BehaviorSubject<AWSAccount[]>([])
+    accs = new BehaviorSubject<IAccount[]>([])
     accSvc.Accounts = accs.asObservable()
     fixture = TestBed.createComponent(TreeViewComponent)
     component = fixture.componentInstance
@@ -69,14 +69,14 @@ describe('TreeViewComponent', () => {
   }))
 
   it('should add new root node on new Accounts list', () => {
-    accs.next([{ id: 'hi' }])
+    accs.next([{ id: 'hi', secret: '', url: '' }])
 
     expect(component.rootNodes.length).toBe(1)
   })
 
   it('should not add duplicated account', () => {
-    accs.next([{ id: 'hi' }])
-    accs.next([{ id: 'hi' }])
+    accs.next([{ id: 'hi', secret: '', url: '' }])
+    accs.next([{ id: 'hi', secret: '', url: '' }])
 
     expect(component.rootNodes.length).toBe(1)
   })
@@ -115,6 +115,7 @@ describe('TreeViewComponent', () => {
       },
     ]
     s3Svc.ItemsEnumerated.emit({
+      account: { id: 'root', secret: '', url: '' },
       parents: ['root', 'child2'],
       items: [
         {
@@ -159,6 +160,7 @@ describe('TreeViewComponent', () => {
       },
     ]
     s3Svc.ItemsEnumerated.emit({
+      account: { id: 'root', secret: '', url: '' },
       parents: ['root', 'child2'],
       items: [
         {
@@ -170,7 +172,7 @@ describe('TreeViewComponent', () => {
     let newFolder = component.rootNodes[0].subItems[1].subItems[0] as FolderNode
     expect(newFolder.name).toBe('hi')
     expect(newFolder.bucket).toBe('child2')
-    expect(newFolder.account).toBe('root')
+    expect(newFolder.account).toEqual({ id: 'root', secret: '', url: '' })
     expect(newFolder.prefix).toBe('')
   }))
   it('should set item enumerated to false on ItemsEnumerated', fakeAsync(() => {
@@ -181,6 +183,7 @@ describe('TreeViewComponent', () => {
       },
     ]
     s3Svc.ItemsEnumerated.emit({
+      account: { id: 'root', secret: '', url: '' },
       parents: ['root'],
       items: [
         {
@@ -194,6 +197,7 @@ describe('TreeViewComponent', () => {
       ],
     })
     s3Svc.ItemsEnumerated.emit({
+      account: { id: 'root', secret: '', url: '' },
       parents: ['root', 'child2'],
       items: [
         {
@@ -234,7 +238,19 @@ describe('TreeViewComponent', () => {
     component.rootNodes = [
       {
         name: 'root',
-        subItems: [new FolderNode('root', 'test', '', 'child1'), { name: 'child2' }],
+        subItems: [
+          new FolderNode(
+            {
+              id: 'root',
+              secret: '',
+              url: '',
+            },
+            'test',
+            '',
+            'child1',
+          ),
+          { name: 'child2' },
+        ],
       },
     ]
     let svc = TestBed.get(SelectionService) as SelectionService

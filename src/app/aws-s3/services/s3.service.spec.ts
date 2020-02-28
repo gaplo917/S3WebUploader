@@ -21,15 +21,21 @@ describe('S3Service', () => {
     expect(service).toBeTruthy()
   }))
   it('should send S3-ListBuckets on listBuckets', inject([S3Service], (service: S3Service) => {
-    service.listBuckets('hi')
-    expect(electron.messageWasSent('S3-ListBuckets', { account: 'hi' })).toBeTruthy()
+    service.listBuckets({ id: 'hi', secret: '', url: '' })
+    expect(electron.messageWasSent('S3-ListBuckets', { id: 'hi', secret: '', url: '' })).toBeTruthy()
   }))
   it('should send S3-ListObjects on listObjects', inject([S3Service], (service: S3Service) => {
-    service.listObjects('hi', 'hi')
-    expect(electron.messageWasSent('S3-ListObjects', { account: 'hi', bucket: 'hi', prefix: '' })).toBeTruthy()
+    service.listObjects({ id: 'hi', secret: '', url: '' }, 'hi')
+    expect(
+      electron.messageWasSent('S3-ListObjects', {
+        account: { id: 'hi', secret: '', url: '' },
+        bucket: 'hi',
+        prefix: '',
+      }),
+    ).toBeTruthy()
   }))
   it('should send S3-RequestDownload on requestDownload', inject([S3Service], (service: S3Service) => {
-    service.requestDownload('hi', 'hi', 'hi123')
+    service.requestDownload({ id: 'hi', secret: '', url: '' }, 'hi', 'hi123')
     expect(electron.messageWasSent('S3-RequestDownload')).toBeTruthy()
   }))
   it('should emit new download path on Settings-SettingsChanged', inject([S3Service], (service: S3Service) => {
@@ -64,7 +70,9 @@ describe('S3Service', () => {
     expect(items.length).toBe(3)
   }))
   it('should send S3-RequestBulkUpload on requestBulkUpload', inject([S3Service], (service: S3Service) => {
-    service.requestBulkUpload('hi', 'bucket', '', [{ filePath: 'hi', newPath: 'hiagain' }])
+    service.requestBulkUpload({ id: 'hi', secret: '', url: '' }, 'bucket', '', [
+      { filePath: 'hi', newPath: 'hiagain', file: null },
+    ])
     expect(electron.messageWasSent('S3-RequestBulkUpload')).toBeTruthy()
   }))
   it('should call listObject on S3-BulkUploadCompleted', inject([S3Service], (service: S3Service) => {

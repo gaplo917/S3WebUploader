@@ -64,7 +64,7 @@ describe('JobService', () => {
       jobs = js
     })
     service.createJob(JobType.Upload, 'hi')
-    service.updatePercentage(jobs[0].id, 10)
+    service.updatePercentage(jobs[0].id, 10, 10, 100)
     expect(jobs[0].percentage).toBe(10)
   }))
   it('should send Application-ShowInFolder for jobs with localFile', inject([JobService], (service: JobService) => {

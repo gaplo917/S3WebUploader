@@ -54,26 +54,26 @@ describe('TreeItemComponent', () => {
   it('should delegate to s3 service if item is S3ActionNode on refresh', () => {
     let s3 = TestBed.get(S3Service) as S3Service
     let spy = spyOn(s3, 'listBuckets')
-    component.item = new AccountNode('test')
+    component.item = new AccountNode({ id: 'test', secret: '', url: '' })
     fixture.detectChanges()
     fixture.nativeElement.querySelector('.action-button').click()
 
-    expect(spy).toHaveBeenCalledWith('test')
+    expect(spy).toHaveBeenCalledWith({ id: 'test', secret: '', url: '' })
   })
   it('should delegate to s3 with correct prefix on refresh folder', () => {
     let s3 = TestBed.get(S3Service) as S3Service
     let spy = spyOn(s3, 'listObjects')
-    component.item = new FolderNode('hi', 'bucket', 'test', 'folder')
+    component.item = new FolderNode({ id: 'hi', secret: '', url: '' }, 'bucket', 'test', 'folder')
 
     fixture.detectChanges()
     fixture.nativeElement.querySelector('.action-button').click()
 
-    expect(spy).toHaveBeenCalledWith('hi', 'bucket', 'test/folder/')
+    expect(spy).toHaveBeenCalledWith({ id: 'hi', secret: '', url: '' }, 'bucket', 'test/folder/')
   })
   it('should set enumerated to true on first expand when item is folder', () => {
     let s3 = TestBed.get(S3Service) as S3Service
     let spy = spyOn(s3, 'listObjects')
-    component.item = new FolderNode('hi', 'bucket', 'test/', 'folder')
+    component.item = new FolderNode({ id: 'hi', secret: '', url: '' }, 'bucket', 'test/', 'folder')
 
     fixture.detectChanges()
     fixture.nativeElement.querySelector('.tree-item .tree-icon > div').click()
@@ -83,7 +83,7 @@ describe('TreeItemComponent', () => {
 
   it('should show dragged-over class on drag over when item is droppable', () => {
     let target = fixture.nativeElement.querySelector('.drop-target')
-    component.item = new FolderNode('hi', 'buckt', 'test', 'folder')
+    component.item = new FolderNode({ id: 'hi', secret: '', url: '' }, 'buckt', 'test', 'folder')
     target.dispatchEvent(new Event('dragenter'))
     fixture.detectChanges()
     expect(fixture.nativeElement.querySelector('.drop-hint').classList).toContain('dragged-over')
@@ -91,7 +91,7 @@ describe('TreeItemComponent', () => {
 
   it('should not show dragged-over class on drag leave when item is droppable', () => {
     let target = fixture.nativeElement.querySelector('.drop-target')
-    component.item = new FolderNode('hi', 'buckt', 'test', 'folder')
+    component.item = new FolderNode({ id: 'hi', secret: '', url: '' }, 'buckt', 'test', 'folder')
     target.dispatchEvent(new Event('dragenter'))
     target.dispatchEvent(new Event('dragleave'))
     fixture.detectChanges()
@@ -99,14 +99,14 @@ describe('TreeItemComponent', () => {
   })
   it('should not show dragged-over class on drag over when item is not droppable', () => {
     let target = fixture.nativeElement.querySelector('.drop-target')
-    component.item = new FileNode('hi', 'hi123', 'test.txt', 'test')
+    component.item = new FileNode({ id: 'hi', secret: '', url: '' }, 'hi123', 'test.txt', 'test')
     target.dispatchEvent(new Event('dragenter'))
     fixture.detectChanges()
     expect(fixture.nativeElement.querySelector('.drop-hint').classList).not.toContain('dragged-over')
   })
   it('should not show dragged-over class after drop when item is droppable', () => {
     let target = fixture.nativeElement.querySelector('.drop-target')
-    component.item = new FolderNode('hi', 'buckt', 'test', 'folder')
+    component.item = new FolderNode({ id: 'hi', secret: '', url: '' }, 'buckt', 'test', 'folder')
     target.dispatchEvent(new Event('dragenter'))
     target.dispatchEvent(new Event('drop'))
     fixture.detectChanges()
@@ -114,7 +114,7 @@ describe('TreeItemComponent', () => {
   })
   it('should navigate to browse route on click when item is Folder', () => {
     let router = TestBed.get(Router) as Router
-    component.item = new FolderNode('hi', 'hi', 'hi', 'hi')
+    component.item = new FolderNode({ id: 'hi', secret: '', url: '' }, 'hi', 'hi', 'hi')
     let spy = spyOn(router, 'navigateByUrl')
 
     fixture.nativeElement.querySelector('.tree-item').click()
@@ -123,7 +123,7 @@ describe('TreeItemComponent', () => {
   })
   it('should navigate to browse route on click when item is File', () => {
     let router = TestBed.get(Router) as Router
-    component.item = new FileNode('hi', 'hi', 'hi', 'hi')
+    component.item = new FileNode({ id: 'hi', secret: '', url: '' }, 'hi', 'hi', 'hi')
     let spy = spyOn(router, 'navigateByUrl')
 
     fixture.nativeElement.querySelector('.tree-item').click()
