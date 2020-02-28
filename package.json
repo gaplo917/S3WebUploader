@@ -29,6 +29,7 @@
     "angular2-notifications": "^2.0.0",
     "aws-sdk": "^2.628.0",
     "core-js": "^2.5.4",
+    "crypto-js": "^4.0.0",
     "intl": "^1.2.5",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

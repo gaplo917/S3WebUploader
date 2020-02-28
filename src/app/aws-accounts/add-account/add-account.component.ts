@@ -27,6 +27,10 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
   url = ''
   valid = false
   tested = false
+  isSaveSecurely = false
+  masterPassword = ''
+  addAccountErrMsg: string
+
   constructor(private accounts: AccountsService) {
     super()
   }
@@ -35,12 +39,12 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
     this.recordSubscription(
       this.accounts.AccountTestResult.subscribe(_ => {
         if (_.account.id === this.key && _.account.secret === this.secret) {
-          this.tested = true
-          this.valid = _.success
-          this.loading = false
-
-          if (this.valid) {
+          if (_.success) {
             this.addAccount()
+          } else {
+            this.tested = true
+            this.valid = false
+            this.loading = false
           }
         }
       }),
@@ -68,12 +72,25 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
   }
 
   addAccount() {
-    this.accounts.addAccount({
+    const accountDetail = {
       id: this.key,
       secret: this.secret,
       url: this.url,
+    }
+
+    this.accounts.addAccount(accountDetail, this.isSaveSecurely, this.masterPassword, err => {
+      if (err === null) {
+        this.tested = true
+        this.valid = true
+        this.loading = false
+        this.toClose.emit()
+      } else {
+        this.addAccountErrMsg = err.message
+        this.tested = true
+        this.valid = false
+        this.loading = false
+      }
     })
-    this.toClose.emit()
   }
 
   fillInMinIODemo() {

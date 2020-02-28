@@ -40,9 +40,15 @@ describe('AddAccountComponent', () => {
     expect(fixture.nativeElement.querySelector('#cred-not-found')).toBeNull()
   })
   it('should enable test button when name entered', fakeAsync(() => {
-    let element = fixture.nativeElement.querySelector("input[name='account-key']")
-    element.value = 'hi'
-    element.dispatchEvent(new Event('input'))
+    let key = fixture.nativeElement.querySelector("input[name='account-key']")
+    key.value = 'hi'
+    key.dispatchEvent(new Event('input'))
+    let secret = fixture.nativeElement.querySelector("input[name='account-secret']")
+    secret.value = 'secret'
+    secret.dispatchEvent(new Event('input'))
+    let url = fixture.nativeElement.querySelector("input[name='url-name']")
+    url.value = 'url'
+    url.dispatchEvent(new Event('input'))
     fixture.detectChanges()
     expect(fixture.nativeElement.querySelector('#test-btn').classList).not.toContain('disabled')
   }))
@@ -68,30 +74,7 @@ describe('AddAccountComponent', () => {
     expect(spy).toHaveBeenCalled()
     expect(component.loading).toBeTruthy()
   }))
-  it('should display credential found and addAccount when test account successful', () => {
-    let accs = TestBed.get(AccountsService) as AccountsService
-    accs.AccountTestResult.emit({
-      account: { id: '', secret: '', url: '' },
-      success: true,
-    })
-    fixture.detectChanges()
-    let element = fixture.nativeElement.querySelector("input[name='account-key']")
-    fixture.whenRenderingDone().then(() => {
-      expect(element.classList).toContain('is-valid')
-    })
-  })
-  it('should display credentialnot found and addAccount when test account failed', () => {
-    let accs = TestBed.get(AccountsService) as AccountsService
-    accs.AccountTestResult.emit({
-      account: { id: '', secret: '', url: '' },
-      success: false,
-    })
-    fixture.detectChanges()
-    let element = fixture.nativeElement.querySelector("input[name='account-key']")
-    fixture.whenRenderingDone().then(() => {
-      expect(element.classList).toContain('is-invalid')
-    })
-  })
+
   it('should be back to non-valid state on text change', fakeAsync(() => {
     let accs = TestBed.get(AccountsService) as AccountsService
     accs.AccountTestResult.emit({

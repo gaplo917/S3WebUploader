@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { AfterViewInit, Component, OnInit } from '@angular/core'
 import { fadeAnimation } from './router.animation'
 import { ElectronService } from './infrastructure/services/electron.service'
 import { AccountsService } from './aws-accounts/services/accounts.service'
@@ -22,7 +22,7 @@ import { ElectronS3Service } from './services/s3'
   styleUrls: ['./app.component.scss'],
   animations: [fadeAnimation],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private accounts: AccountsService,
     private electron: ElectronService,
@@ -54,6 +54,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.analytics.logEvent('Application', 'Initialize')
+  }
+
+  ngAfterViewInit(): void {
+    this.eHistoryStorage.initialize()
+    this.eAccount.initialize()
   }
 
   disable(event) {

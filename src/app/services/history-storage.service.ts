@@ -5,12 +5,8 @@ import { Injectable } from '@angular/core'
   providedIn: 'root',
 })
 export class ElectronHistoryStorage {
-  private appDir: string
-  private historyFile: string
-  private historyEntries: Array<{ type: string; name: string; time: Date; status: string }>
+  private historyEntries: Array<{ type: string; name: string; time: Date; status: string }> = []
   constructor(private messageBus: MessageBus) {
-    this.historyFile = this.appDir + 'history.json'
-    this.historyEntries = []
     this.messageBus.on('History-Add', (event: string, arg: any) => {
       this.addEntry(arg.type, arg.name, arg.status)
     })
@@ -20,11 +16,7 @@ export class ElectronHistoryStorage {
   }
 
   public initialize() {
-    // TODO
-    // if (fs.existsSync(this.historyFile)) {
-    //     this.load(this.historyFile);
-    // }
-    this.save()
+    this.load()
     this.messageBus.send('History-Changed', { histories: this.getHistory() })
   }
 
@@ -52,16 +44,11 @@ export class ElectronHistoryStorage {
     this.messageBus.send('History-Changed', { histories: this.getHistory() })
   }
 
-  private load(path: string) {
-    // TODO
-    // this.historyEntries = JSON.parse(fs.readFileSync(path).toString());
+  private load() {
+    this.historyEntries = JSON.parse(localStorage.getItem('history') || '[]')
   }
 
   private save() {
-    // TODO
-    // if (!fs.existsSync(this.appDir)) {
-    //     fs.mkdirSync(this.appDir);
-    // }
-    // fs.writeFileSync(this.historyFile, JSON.stringify(this.historyEntries), 'utf8');
+    localStorage.setItem('history', JSON.stringify(this.historyEntries))
   }
 }

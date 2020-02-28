@@ -21,12 +21,6 @@ export class AccountsService {
   }
 
   init() {
-    this.electron.onCD('Settings-SettingsChanged', (event: string, arg: any) => {
-      // 0.2.0: Settings accounts in settings are deprecated, convert legacy accounts to accounts service
-      arg.accounts.forEach(a => {
-        this.addAccount(a)
-      })
-    })
     this.electron.onCD('Accounts-AccountAdded', (event: string, arg: IAccount) => {
       this.electron.send('AWS-InitAccount', arg)
     })
@@ -57,7 +51,7 @@ export class AccountsService {
     this.electron.send('AWS-TestAccount', account)
   }
 
-  addAccount(account: IAccount) {
-    this.electron.send('Accounts-AddAccount', account)
+  addAccount(account: IAccount, isSaveSecurely: boolean, masterPassword: string, cb: (err: Error | null) => void) {
+    this.electron.send('Accounts-AddAccount', { account, isSaveSecurely, masterPassword, cb })
   }
 }
