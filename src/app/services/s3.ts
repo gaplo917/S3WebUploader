@@ -1,5 +1,5 @@
 import * as AWS from 'aws-sdk'
-import { ListBucketsOutput, ListObjectsOutput, GetObjectOutput } from 'aws-sdk/clients/s3'
+import { GetObjectOutput, ListBucketsOutput, ListObjectsOutput } from 'aws-sdk/clients/s3'
 import { ElectronJobManager } from './job-manager'
 import { IAccount } from './model'
 import { MessageBus } from './message-bus'
@@ -123,17 +123,21 @@ export class ElectronS3Service {
 
   private createS3Instance(acc: IAccount): AWS.S3 {
     let s3: AWS.S3
-    if (acc.url) {
+    if (acc.initialBucket) {
+      s3 = new AWS.S3({
+        endpoint: acc.url,
+        s3BucketEndpoint: true,
+        credentials: new AWS.Credentials(acc.id, acc.secret),
+      })
+    } else if (acc.url) {
       s3 = new AWS.S3({
         endpoint: acc.url,
         credentials: new AWS.Credentials(acc.id, acc.secret),
-        s3ForcePathStyle: true, // needed with minio?
         signatureVersion: 'v4',
       })
     } else {
       s3 = new AWS.S3({
         credentials: new AWS.Credentials(acc.id, acc.secret),
-        s3ForcePathStyle: true, // needed with minio?
         signatureVersion: 'v4',
       })
     }
@@ -141,17 +145,21 @@ export class ElectronS3Service {
   }
 
   private listBuckets(account: IAccount): Promise<ListBucketsOutput> {
-    const promise = new Promise<ListBucketsOutput>((resolve, reject) => {
-      const s3 = this.createS3Instance(account)
-      s3.listBuckets((err, data) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(data)
-        }
-      })
+    return new Promise<ListBucketsOutput>((resolve, reject) => {
+      if (account.initialBucket) {
+        // bucket endpoint not able to s3.listBuckets, just mock the response for the UI
+        resolve({ Buckets: [{ Name: account.initialBucket, CreationDate: new Date() }] })
+      } else {
+        const s3 = this.createS3Instance(account)
+        s3.listBuckets((err, data) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(data)
+          }
+        })
+      }
     })
-    return promise
   }
 
   // tslint:disable-next-line:max-line-length
@@ -161,7 +169,7 @@ export class ElectronS3Service {
     prefix: string,
     delimiter = '/',
   ): Promise<ListObjectsOutput> {
-    const promise = new Promise<ListObjectsOutput>((resolve, reject) => {
+    return new Promise<ListObjectsOutput>((resolve, reject) => {
       const params = {
         Bucket: bucket,
         Prefix: prefix,
@@ -182,7 +190,6 @@ export class ElectronS3Service {
         }
       })
     })
-    return promise
   }
 
   // tslint:disable-next-line:max-line-length

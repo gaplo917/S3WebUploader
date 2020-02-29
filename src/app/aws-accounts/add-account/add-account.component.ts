@@ -1,7 +1,8 @@
-import { Component, OnInit, EventEmitter } from '@angular/core'
-import { AccountsService } from '../services/accounts.service'
-import { trigger, transition, query, stagger, animate, keyframes, style } from '@angular/animations'
+import { Component, EventEmitter, OnInit } from '@angular/core'
+import { animate, keyframes, query, stagger, style, transition, trigger } from '@angular/animations'
 import { SubscriptionComponent } from 'src/app/infrastructure/subscription-component'
+import { AccountsService } from 'src/app/aws-accounts/services/accounts.service'
+import { IAccount } from 'src/app/services/model'
 
 @Component({
   selector: 'app-add-account',
@@ -40,7 +41,7 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
       this.accounts.AccountTestResult.subscribe(_ => {
         if (_.account.id === this.key && _.account.secret === this.secret) {
           if (_.success) {
-            this.addAccount()
+            this.addAccount(_.account)
           } else {
             this.tested = true
             this.valid = false
@@ -56,14 +57,25 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
   }
 
   testAccount() {
-    if (this.key) {
-      this.loading = true
-      this.accounts.testAccount({
-        id: this.key,
-        secret: this.secret,
-        url: this.url,
-      })
+    if (!this.key) return
+    this.loading = true
+    let initialBucket
+
+    // handle virtual-hosted style
+    // https://aws.amazon.com/blogs/aws/amazon-s3-path-deprecation-plan-the-rest-of-the-story/
+    if (
+      this.url.match(/https:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.digitaloceanspaces.com/) ||
+      this.url.match(/https:\/\/[A-Za-z0-9\-_]+\.s3[A-Za-z0-9\-_]+\.amazonaws.com/)
+    ) {
+      initialBucket = this.url.match(/[A-Za-z0-9\-_]+\./)[0].replace('.', '')
     }
+
+    this.accounts.testAccount({
+      id: this.key,
+      secret: this.secret,
+      url: this.url,
+      initialBucket: initialBucket,
+    })
   }
 
   onTextChange() {
@@ -71,13 +83,7 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
     this.valid = false
   }
 
-  addAccount() {
-    const accountDetail = {
-      id: this.key,
-      secret: this.secret,
-      url: this.url,
-    }
-
+  addAccount(accountDetail: IAccount) {
     this.accounts.addAccount(accountDetail, this.isSaveSecurely, this.masterPassword, err => {
       if (err === null) {
         this.tested = true

@@ -26,11 +26,15 @@ export class ElectronAWSService {
     })
   }
 
-  public initialize() {}
-
   private testAccount(account: IAccount): Promise<boolean> {
     let s3: AWS.S3
-    if (account.url) {
+    if (account.initialBucket) {
+      s3 = new AWS.S3({
+        endpoint: account.url,
+        s3BucketEndpoint: true,
+        credentials: new AWS.Credentials(account.id, account.secret),
+      })
+    } else if (account.url) {
       s3 = new AWS.S3({
         endpoint: account.url,
         credentials: new AWS.Credentials(account.id, account.secret),
@@ -41,15 +45,29 @@ export class ElectronAWSService {
         credentials: new AWS.Credentials(account.id, account.secret),
       })
     }
-    const p = new Promise<boolean>((resolve, reject) => {
-      s3.listBuckets((err, data) => {
-        if (err) {
-          resolve(false)
-        } else {
-          resolve(true)
-        }
-      })
+    return new Promise<boolean>((resolve, reject) => {
+      if (account.initialBucket) {
+        s3.listObjects(
+          {
+            Bucket: account.initialBucket,
+          },
+          (err, data) => {
+            if (err) {
+              resolve(false)
+            } else {
+              resolve(true)
+            }
+          },
+        )
+      } else {
+        s3.listBuckets((err, data) => {
+          if (err) {
+            resolve(false)
+          } else {
+            resolve(true)
+          }
+        })
+      }
     })
-    return p
   }
 }
