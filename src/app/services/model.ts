@@ -3,4 +3,5 @@ export interface IAccount {
   secret: string
   url: string
   initialBucket?: string
+  pathStyle?: boolean
 }

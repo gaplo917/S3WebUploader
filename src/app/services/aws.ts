@@ -2,6 +2,7 @@ import * as AWS from 'aws-sdk'
 import { Injectable } from '@angular/core'
 import { MessageBus } from 'src/app/services/message-bus'
 import { IAccount } from 'src/app/services/model'
+import { createS3Instance } from 'src/app/services/s3'
 
 @Injectable({
   providedIn: 'root',
@@ -27,24 +28,7 @@ export class ElectronAWSService {
   }
 
   private testAccount(account: IAccount): Promise<boolean> {
-    let s3: AWS.S3
-    if (account.initialBucket) {
-      s3 = new AWS.S3({
-        endpoint: account.url,
-        s3BucketEndpoint: true,
-        credentials: new AWS.Credentials(account.id, account.secret),
-      })
-    } else if (account.url) {
-      s3 = new AWS.S3({
-        endpoint: account.url,
-        credentials: new AWS.Credentials(account.id, account.secret),
-      })
-    } else {
-      s3 = new AWS.S3({
-        endpoint: account.url,
-        credentials: new AWS.Credentials(account.id, account.secret),
-      })
-    }
+    const s3 = createS3Instance(account)
     return new Promise<boolean>((resolve, reject) => {
       if (account.initialBucket) {
         s3.listObjects(

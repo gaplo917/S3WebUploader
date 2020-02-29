@@ -60,6 +60,7 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
     if (!this.key) return
     this.loading = true
     let initialBucket
+    let pathStyle = true
 
     // handle virtual-hosted style
     // https://aws.amazon.com/blogs/aws/amazon-s3-path-deprecation-plan-the-rest-of-the-story/
@@ -70,11 +71,17 @@ export class AddAccountComponent extends SubscriptionComponent implements OnInit
       initialBucket = this.url.match(/[A-Za-z0-9\-_]+\./)[0].replace('.', '')
     }
 
+    if (this.url.includes('digitaloceanspaces.com') || this.url.includes('amazonaws.com')) {
+      // guarantee support virtual hosted style
+      pathStyle = false
+    }
+
     this.accounts.testAccount({
       id: this.key,
       secret: this.secret,
       url: this.url,
       initialBucket: initialBucket,
+      pathStyle,
     })
   }
 

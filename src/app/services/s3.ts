@@ -9,6 +9,31 @@ AWS.config.apiVersions = {
   s3: '2006-03-01',
 }
 
+export function createS3Instance(acc: IAccount): AWS.S3 {
+  if (acc.initialBucket) {
+    return new AWS.S3({
+      endpoint: acc.url,
+      s3BucketEndpoint: true,
+      s3ForcePathStyle: acc.pathStyle,
+      credentials: new AWS.Credentials(acc.id, acc.secret),
+      signatureVersion: 'v4',
+    })
+  } else if (acc.url) {
+    return new AWS.S3({
+      endpoint: acc.url,
+      s3ForcePathStyle: acc.pathStyle,
+      credentials: new AWS.Credentials(acc.id, acc.secret),
+      signatureVersion: 'v4',
+    })
+  } else {
+    return new AWS.S3({
+      s3ForcePathStyle: acc.pathStyle,
+      credentials: new AWS.Credentials(acc.id, acc.secret),
+      signatureVersion: 'v4',
+    })
+  }
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -31,7 +56,7 @@ export class ElectronS3Service {
   }
 
   private downloadFile(jobID: string, account: IAccount, bucket: string, key: string, saveTo = '') {
-    const s3 = this.createS3Instance(account)
+    const s3 = createS3Instance(account)
     const params = {
       Bucket: bucket,
       Key: key,
@@ -121,36 +146,13 @@ export class ElectronS3Service {
       })
   }
 
-  private createS3Instance(acc: IAccount): AWS.S3 {
-    let s3: AWS.S3
-    if (acc.initialBucket) {
-      s3 = new AWS.S3({
-        endpoint: acc.url,
-        s3BucketEndpoint: true,
-        credentials: new AWS.Credentials(acc.id, acc.secret),
-      })
-    } else if (acc.url) {
-      s3 = new AWS.S3({
-        endpoint: acc.url,
-        credentials: new AWS.Credentials(acc.id, acc.secret),
-        signatureVersion: 'v4',
-      })
-    } else {
-      s3 = new AWS.S3({
-        credentials: new AWS.Credentials(acc.id, acc.secret),
-        signatureVersion: 'v4',
-      })
-    }
-    return s3
-  }
-
   private listBuckets(account: IAccount): Promise<ListBucketsOutput> {
     return new Promise<ListBucketsOutput>((resolve, reject) => {
       if (account.initialBucket) {
         // bucket endpoint not able to s3.listBuckets, just mock the response for the UI
         resolve({ Buckets: [{ Name: account.initialBucket, CreationDate: new Date() }] })
       } else {
-        const s3 = this.createS3Instance(account)
+        const s3 = createS3Instance(account)
         s3.listBuckets((err, data) => {
           if (err) {
             reject(err)
@@ -175,7 +177,7 @@ export class ElectronS3Service {
         Prefix: prefix,
         Delimiter: delimiter,
       }
-      const s3 = this.createS3Instance(account)
+      const s3 = createS3Instance(account)
       s3.listObjectsV2(params, (err, data) => {
         if (err) {
           reject(err)
@@ -204,7 +206,7 @@ export class ElectronS3Service {
         Bucket: bucket,
         Key: key,
       }
-      const s3 = this.createS3Instance(account)
+      const s3 = createS3Instance(account)
       req = s3.getObject(params, (err, data) => {
         if (err) {
           reject(err)
@@ -222,7 +224,7 @@ export class ElectronS3Service {
       Bucket: bucket,
       Key: key,
     }
-    const s3 = this.createS3Instance(account)
+    const s3 = createS3Instance(account)
     const req = s3.upload(params)
     return { request: req }
   }
