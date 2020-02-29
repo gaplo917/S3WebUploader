@@ -1,5 +1,8 @@
 # S3 Web Uploader
 
+[![Build Status](https://travis-ci.com/gaplo917/S3WebUploader.svg?branch=master)](https://travis-ci.com/gaplo917/S3WebUploader)
+[![GitHub release](https://img.shields.io/github/v/release/gaplo917/S3WebUploader.svg)](https://gitHub.com/gaplo917/S3WebUploader/releases/)
+
 ![alt text](misc/s3-web-uploader.gif 'Preview')
 
 A minimalistic UI to conveniently upload and download files from
