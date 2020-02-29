@@ -71,15 +71,16 @@ version<sup>\*</sup>.
 
 ### CORS Limitation
 
-[MinIO](https://docs.min.io/) 's API enabled by default on all buckets for all HTTP verbs. However,
-DigitalOceanSpace & S3 are not.
+[MinIO](https://docs.min.io/) 's API enabled CORS by default on all buckets for all HTTP verbs.
+However, DigitalOceanSpace & S3 are not.
 
 There are two ways to solve CORS:
 
 1. Host S3WebUploader (Static Web App) on your own bucket
-1. Configure CORS settings on your bucket
+1. Configure CORS settings on your bucket (make sure you know the side effects before apply CORS
+   settings)
 
-<img src="misc/digital-ocean-space-CORS.png" width="400">
+<img src="misc/digital-ocean-space-CORS.png" width="400"></img>
 
 ## Getting Start
 
