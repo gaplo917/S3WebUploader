@@ -2,7 +2,10 @@
 
 ![alt text](misc/s3-web-uploader.gif 'Preview')
 
-A minimalistic UI to conveniently upload and download files from AWS S3
+A minimalistic UI to conveniently upload and download files from
+[AWS S3](https://aws.amazon.com/s3/?nc=sn&loc=1)
+/ [Digital Ocean Space](https://m.do.co/c/62579dc21130)
+/ [MinIO](https://docs.min.io/)
 
 Live Demo: https://gaplo917.github.io/S3WebUploader
 
@@ -15,6 +18,7 @@ Live Demo: https://gaplo917.github.io/S3WebUploader
 - Support multiple account Login
 - Securely encrypt credential with standalone master password and save in browser
 - Options to rename files during upload
+- Support Virtual-host style endpoint
 
 # Built On
 
@@ -33,6 +37,7 @@ https://github.com/Yamazaki93/S3Uploader/tree/762121ab33fe4854b1ec3f94d5bcc260f0
 
 Yamazaki93 use `aws-sdk/NodeJs` in electron-side to communicate with S3 that can do lots of work limited by browser, for example
 
+- CORS(Cross Origin Resource Sharing) issues
 - download a file inside electron-side using S3 `getObject` API, then write to file system
 - choosing a custom download path
 - reading file system to retrieve `~/.aws` credentials
@@ -50,10 +55,23 @@ So, I decided to rewrite the S3 communication part completely to build a fully b
 
 - Rewrite the communication part with `aws-sdk-js` completely, now it is a browser-compatible tree view & drag-drop upload
 - Reuse most of the UI from Yamazaki93/S3Uploader with some enhancements and bug fixes
-- Added MinIO Demo for S3-compatible
+- Added MinIO Demo for S3-compatible service
+- Support Virtual-host style endpoint
 - Store all user inputs securely in browser with a single master password by applying
   - `pbkdf2` hash `master password` and store in LocalStorage for password verification
   - `HmacSHA512` hash `master password` to produce fixed length `secret` for AES256 encryption
+
+### CORS Limitation
+
+[MinIO](https://docs.min.io/) 's API enabled by default on all buckets for all HTTP verbs. However, DigitalOceanSpace & S3 are not.
+
+There are two ways to solve CORS:
+
+1. Host this Web App on your bucket
+1. Configure CORS settings on your bucket
+
+Like this:
+![](misc/digital-ocean-space-CORS.png)
 
 ## Getting Start
 
@@ -70,9 +88,6 @@ yarn lint
 
 # production build
 yarn build
-
-# production build if have base path like GitHub Pages
-yarn build --base-href="/S3WebUploader/"
 
 ```
 
