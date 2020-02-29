@@ -34,19 +34,20 @@ https://github.com/Yamazaki93/S3Uploader/tree/762121ab33fe4854b1ec3f94d5bcc260f0
 
 ### Frictions of Electron
 
-Yamazaki93 use `aws-sdk/NodeJs` in electron-side to communicate with S3 that can do lots of work
-**limited by browser**, for example
+[Yamazaki93/S3Uploader](https://github.com/Yamazaki93) use `aws-sdk/NodeJs` inside the electron to
+communicate with S3. This solved a lot of **limitation of browsers**, for example
 
-- No CORS(Cross Origin Resource Sharing) issues
-- download a file inside electron-side using S3 `getObject` API, then write to file system
+- solved CORS(Cross Origin Resource Sharing) issues
+- download a file inside electron using S3 `getObject` API(able to show progress), then write to
+  file system.
 - choosing a custom download path
 - reading file system to retrieve `~/.aws` credentials
 
 However, for whom want to upload things to S3 compatible service momentarily, installing an electron
 application has too much frictions.
 
-Let alone, I think electron application granted too much permissions for this simple purpose (Think
-about: If it can read your `~/.aws` credentials, what else can it read?).
+Let alone, I think electron application granted too much permissions for this simple purpose (If it
+can read your `~/.aws` credentials, what else can it read?).
 
 So, I decided to rewrite the S3 communication part completely to build a fully browser-compatible
 version<sup>\*</sup>.
@@ -75,7 +76,7 @@ There are two ways to solve CORS:
 1. Host S3WebUploader (Static Web App) on your own bucket
 1. Configure CORS settings on your bucket
 
-Like this: ![](misc/digital-ocean-space-CORS.png)
+<img src="misc/digital-ocean-space-CORS.png" width="400">
 
 ## Getting Start
 
@@ -98,15 +99,15 @@ yarn build
 # More cool projects?
 
 I sincerely believe I couldn't complete this project within a day (< 12 hours) without the following
-tools that help me read/write code productively in my IntelliJ IDEA.
+tools that improve my productivity of reading/writing code.
 
 - [GapStyle - A productivity-oriented and experience-driven designed IntelliJ IDEA color scheme](https://github.com/gaplo917/GapStyle)
 - [Ligatured-Hack - My Favourite Hack Font with Ligatures](https://github.com/gaplo917/Ligatured-Hack)
 
 # Credit
 
-Thanks for the amazing works of Yamazaki93/S3Uploader that built with a clean and consistent Angular
-architecture initially.
+Thanks for the amazing works of [Yamazaki93/S3Uploader](https://github.com/Yamazaki93) that built
+with a clean and consistent Angular architecture initially.
 
 # License
 
