@@ -21,27 +21,39 @@ Live Demo: https://gaplo917.github.io/S3WebUploader
 This app is built with many amazing framework, including:
 
 <a href="https://angular.io/"><img src="https://angular.io/assets/images/logos/angular/angular.svg" width="150"></a>
-
-<a href="https://ionicons.com/"><svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 161.2c-52.3 0-94.8 42.5-94.8 94.8s42.5 94.8 94.8 94.8 94.8-42.5 94.8-94.8-42.5-94.8-94.8-94.8z"/><circle cx="392.1" cy="126.4" r="43.2"/><path d="M445.3 169.8l-1.8-4-2.9 3.3c-7.1 8-16.1 14.2-26.1 17.9l-2.8 1 1.1 2.7c8.6 20.7 13 42.7 13 65.2 0 93.7-76.2 169.9-169.9 169.9S86.1 349.7 86.1 256 162.3 86.1 256 86.1c25.4 0 49.9 5.5 72.8 16.4l2.7 1.3 1.2-2.7c4.2-9.8 10.8-18.5 19.2-25.2l3.4-2.7-3.9-2C321.6 55.8 289.5 48 256 48 141.3 48 48 141.3 48 256s93.3 208 208 208 208-93.3 208-208c0-30-6.3-59-18.7-86.2z"/></svg> IonIcons</a>
-
-Argon https://demos.creative-tim.com/argon-design-system/docs/getting-started/quick-start.html
+<a href="https://ionicons.com/"><img src="misc/logo-ionic.svg" width="140"></a>
+<a href="https://github.com/creativetimofficial/argon-design-system"><img src="misc/argoncss.png" height="80"></a>
 
 # Project History
 
 This project is modified from fully-coupled electron-based project
 https://github.com/Yamazaki93/S3Uploader/tree/762121ab33fe4854b1ec3f94d5bcc260f05f7e6d.
 
-Yamazaki93 use `aws-sdk/NodeJs` in electron to communicate with S3. But installing an electron application
-is not convenient in some cases.
+### Frictions of Electron
 
-So, I decided to rewrite it completely for a browser-compatible version\*.
+Yamazaki93 use `aws-sdk/NodeJs` in electron-side to communicate with S3 that can do lots of work limited by browser, for example
 
-- Rewrite the communication part with `aws-sdk-js` completely, now it is a browser-compatible tree view & drag-drop upload.
-- Reuse most of the UI from Yamazaki93/S3Uploader with some enhancements and bug fixes.
+- download a file inside electron-side using S3 `getObject` API, then write to file system
+- choosing a custom download path
+- reading file system to retrieve `~/.aws` credentials
+
+However, for whom want to upload things to S3 compatible service momentarily, installing an electron application has too much frictions.
+
+Let alone, I think electron application in general are excessively granted too much permissions for this simple purpose (Think
+about it can read your `~/.aws` credentials, what else can it read?).
+
+So, I decided to rewrite the S3 communication part completely to build a fully browser-compatible version<sup>\*</sup>.
+
+<sup>\* Some user experience has been changed due to browser limitation</sup>
+
+### Browser-compatible Implementation
+
+- Rewrite the communication part with `aws-sdk-js` completely, now it is a browser-compatible tree view & drag-drop upload
+- Reuse most of the UI from Yamazaki93/S3Uploader with some enhancements and bug fixes
 - Added MinIO Demo for S3-compatible
-- Store all user inputs securely in browser with a single master password by applying pbkdf2, HmacSHA512 and AES encryption
-
-\* Some User experience has been changes due to browser limitation
+- Store all user inputs securely in browser with a single master password by applying
+  - `pbkdf2` hash `master password` and store in LocalStorage for password verification
+  - `HmacSHA512` hash `master password` to produce fixed length `secret` for AES256 encryption
 
 ## Getting Start
 
@@ -64,7 +76,14 @@ yarn build --base-href="/S3WebUploader/"
 
 ```
 
-## Credit
+# More cool projects?
+
+I sincerely believe I couldn't complete this project within a day (< 12 hours) without the following two productivity tools in my IntelliJ IDEA.
+
+- [GapStyle - A productivity-oriented and experience-driven designed IntelliJ IDEA color scheme](https://github.com/gaplo917/GapStyle)
+- [Ligatured-Hack - My Favourite Hack Font with Ligatures](https://github.com/gaplo917/Ligatured-Hack)
+
+# Credit
 
 Thanks for the amazing works of Yamazaki93/S3Uploader that built with a
 clean and consistent Angular architecture initially.
