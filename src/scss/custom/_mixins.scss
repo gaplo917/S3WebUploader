@@ -1,0 +1,19 @@
+//
+// Mixins
+//
+
+// Bootstrap default mixins
+
+@import "src/scss/bootstrap/mixins";
+
+
+// Custom mixins
+
+@import "src/scss/core/mixins/alert";
+@import "src/scss/core/mixins/badge";
+@import "src/scss/core/mixins/background-variant";
+@import "src/scss/core/mixins/buttons";
+@import "src/scss/core/mixins/forms";
+@import "src/scss/core/mixins/icon";
+@import "src/scss/core/mixins/modals";
+@import "src/scss/core/mixins/popover";

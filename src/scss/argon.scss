@@ -1,0 +1,70 @@
+/*!
+
+=========================================================
+* Argon Dashboard - v1.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2018 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+
+// Core
+
+@import "src/scss/custom/functions";
+@import "src/scss/custom/variables";
+@import "src/scss/custom/mixins";
+
+// Bootstrap (4.1.3) components
+
+@import "src/scss/bootstrap/root";
+@import "src/scss/bootstrap/reboot";
+@import "src/scss/bootstrap/type";
+@import "src/scss/bootstrap/images";
+@import "src/scss/bootstrap/code";
+@import "src/scss/bootstrap/grid";
+@import "src/scss/bootstrap/tables";
+@import "src/scss/bootstrap/forms";
+@import "src/scss/bootstrap/buttons";
+@import "src/scss/bootstrap/transitions";
+@import "src/scss/bootstrap/dropdown";
+@import "src/scss/bootstrap/button-group";
+@import "src/scss/bootstrap/input-group";
+@import "src/scss/bootstrap/custom-forms";
+@import "src/scss/bootstrap/nav";
+@import "src/scss/bootstrap/navbar";
+@import "src/scss/bootstrap/card";
+@import "src/scss/bootstrap/breadcrumb";
+@import "src/scss/bootstrap/pagination";
+@import "src/scss/bootstrap/badge";
+@import "src/scss/bootstrap/jumbotron";
+@import "src/scss/bootstrap/alert";
+@import "src/scss/bootstrap/progress";
+@import "src/scss/bootstrap/media";
+@import "src/scss/bootstrap/list-group";
+@import "src/scss/bootstrap/close";
+@import "src/scss/bootstrap/modal";
+@import "src/scss/bootstrap/tooltip";
+@import "src/scss/bootstrap/popover";
+@import "src/scss/bootstrap/carousel";
+@import "src/scss/bootstrap/utilities";
+@import "src/scss/bootstrap/print";
+
+// Argon utilities and components
+
+@import "src/scss/custom/reboot";
+@import "src/scss/custom/utilities";
+@import "src/scss/custom/components";
+
+// Vendor (Plugins)
+
+@import "src/scss/custom/vendors";
+
+
