@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { JobService } from '../job.service'
-import { SubscriptionComponent } from '../../infrastructure/subscription-component'
-import { trigger, transition, stagger, animate, keyframes, style, query } from '@angular/animations'
-import { Job } from '../job'
+import { animate, keyframes, query, stagger, style, transition, trigger } from '@angular/animations'
+import { JobService } from 'src/app/job-view/job.service'
+import { SubscriptionComponent } from 'src/app/infrastructure/subscription-component'
+import { Job } from 'src/app/job-view/job'
 
 @Component({
   selector: 'app-job-list',

@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
-import { JobType } from '../job-type'
-import { JobStatus } from '../job-status'
-import { trigger, transition, query, stagger, animate, keyframes, style } from '@angular/animations'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { animate, keyframes, query, stagger, style, transition, trigger } from '@angular/animations'
+import { JobType } from 'src/app/job-view/job-type'
+import { JobStatus } from 'src/app/job-view/job-status'
 
 @Component({
   selector: 'app-job-item',

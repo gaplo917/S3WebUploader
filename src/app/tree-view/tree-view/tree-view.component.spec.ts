@@ -1,17 +1,17 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing'
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
 
-import { TreeViewComponent } from './tree-view.component'
-import { TreeItemComponent } from '../tree-item/tree-item.component'
+import { TreeViewComponent } from 'src/app/tree-view/tree-view/tree-view.component'
+import { TreeItemComponent } from 'src/app/tree-view/tree-item/tree-item.component'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
 import { AwsAccountsModule } from 'src/app/aws-accounts/aws-accounts.module'
 import { AccountsService } from 'src/app/aws-accounts/services/accounts.service'
 import { BehaviorSubject } from 'rxjs'
 import { S3Service } from 'src/app/aws-s3/services/s3.service'
 import { AwsS3Module } from 'src/app/aws-s3/aws-s3.module'
-import { FolderNode, BucketNode, FileNode } from '../tree-node'
+import { BucketNode, FileNode, FolderNode } from 'src/app/tree-view/tree-node'
 import { RouterTestingModule } from '@angular/router/testing'
-import { SelectionService } from '../services/selection.service'
-import { IAccount } from '../../services/model'
+import { IAccount } from 'src/app/services/model'
+import { SelectionService } from 'src/app/tree-view/services/selection.service'
 
 describe('TreeViewComponent', () => {
   let component: TreeViewComponent

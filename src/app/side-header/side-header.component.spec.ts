@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { SideHeaderComponent } from './side-header.component'
+import { SideHeaderComponent } from 'src/app/side-header/side-header.component'
 
 describe('SideHeaderComponent', () => {
   let component: SideHeaderComponent

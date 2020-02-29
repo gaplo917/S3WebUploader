@@ -1,4 +1,4 @@
-import { AwsAccountsModule } from './aws-accounts.module'
+import { AwsAccountsModule } from 'src/app/aws-accounts/aws-accounts.module'
 
 describe('AwsAccountsModule', () => {
   let awsAccountsModule: AwsAccountsModule

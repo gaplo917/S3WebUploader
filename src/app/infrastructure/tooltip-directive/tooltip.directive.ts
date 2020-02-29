@@ -1,6 +1,6 @@
-import { Directive, Input, ElementRef, Renderer, OnInit, ComponentRef, OnDestroy } from '@angular/core'
-import { TooltipComponent } from '../tooltip/tooltip.component'
-import { DomService } from '../services/dom.service'
+import { ComponentRef, Directive, ElementRef, Input, OnDestroy, OnInit, Renderer } from '@angular/core'
+import { DomService } from 'src/app/infrastructure/services/dom.service'
+import { TooltipComponent } from 'src/app/infrastructure/tooltip/tooltip.component'
 
 @Directive({
   selector: '[appTooltip]',

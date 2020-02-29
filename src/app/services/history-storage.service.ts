@@ -1,4 +1,4 @@
-import { MessageBus } from './message-bus'
+import { MessageBus } from 'src/app/services/message-bus'
 import { Injectable } from '@angular/core'
 
 @Injectable({

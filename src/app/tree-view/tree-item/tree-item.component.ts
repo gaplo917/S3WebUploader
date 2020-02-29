@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core'
-import { TreeNode, TreeNodeType, S3ActionNode, BucketNode, FolderNode, AccountNode } from '../tree-node'
+import { TreeNode, TreeNodeType, S3ActionNode, BucketNode, FolderNode, AccountNode } from 'src/app/tree-view/tree-node'
 import { S3Service } from 'src/app/aws-s3/services/s3.service'
 import { Router } from '@angular/router'
 import { RequestUploadService } from 'src/app/aws-s3/services/request-upload.service'

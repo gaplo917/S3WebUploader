@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core'
-import { TreeNode, AccountNode, BucketNode, FolderNode, FileNode } from '../tree-node'
+import { AccountNode, BucketNode, FileNode, FolderNode, TreeNode } from 'src/app/tree-view/tree-node'
 import { AccountsService } from 'src/app/aws-accounts/services/accounts.service'
 import { SubscriptionComponent } from 'src/app/infrastructure/subscription-component'
 import { S3Service } from 'src/app/aws-s3/services/s3.service'
 import { S3Item } from 'src/app/aws-s3/s3-item'
-import { SelectionService } from '../services/selection.service'
-import { IAccount } from '../../services/model'
+import { SelectionService } from 'src/app/tree-view/services/selection.service'
+import { IAccount } from 'src/app/services/model'
 
 @Component({
   selector: 'app-tree-view',

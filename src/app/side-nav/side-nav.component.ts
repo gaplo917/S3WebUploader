@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { DomService } from '../infrastructure/services/dom.service'
-import { AddAccountComponent } from '../aws-accounts/add-account/add-account.component'
-import { SelectionService } from '../tree-view/services/selection.service'
-import { JobService } from '../job-view/job.service'
+import { DomService } from 'src/app/infrastructure/services/dom.service'
+import { SelectionService } from 'src/app/tree-view/services/selection.service'
+import { JobService } from 'src/app/job-view/job.service'
+import { AddAccountComponent } from 'src/app/aws-accounts/add-account/add-account.component'
 
 @Component({
   selector: 'app-side-nav',

@@ -1,4 +1,4 @@
-import { InfrastructureModule } from './infrastructure.module'
+import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
 
 describe('InfrastructureModule', () => {
   let infrastructureModule: InfrastructureModule

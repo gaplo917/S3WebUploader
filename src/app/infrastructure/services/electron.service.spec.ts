@@ -1,5 +1,5 @@
-import { TestBed, inject } from '@angular/core/testing'
-import { ElectronService } from './electron.service'
+import { inject, TestBed } from '@angular/core/testing'
+import { ElectronService } from 'src/app/infrastructure/services/electron.service'
 
 let fakeElectron = {
     ipcRenderer: {

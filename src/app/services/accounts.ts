@@ -1,9 +1,9 @@
-import { IAccount } from './model'
-import { MessageBus } from './message-bus'
 import { Injectable } from '@angular/core'
-import { CryptoService } from './crypto.service'
-import { DomService } from '../infrastructure/services/dom.service'
-import { UnlockAccountComponent } from '../aws-accounts/unlock-account/unlock-account.component'
+import { IAccount } from 'src/app/services/model'
+import { DomService } from 'src/app/infrastructure/services/dom.service'
+import { MessageBus } from 'src/app/services/message-bus'
+import { CryptoService } from 'src/app/services/crypto.service'
+import { UnlockAccountComponent } from 'src/app/aws-accounts/unlock-account/unlock-account.component'
 
 @Injectable({
   providedIn: 'root',

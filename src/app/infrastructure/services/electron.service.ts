@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core'
-import { MessageBus } from '../../services/message-bus'
+import { MessageBus } from 'src/app/services/message-bus'
+
 declare let electron: any
 
 @Injectable()

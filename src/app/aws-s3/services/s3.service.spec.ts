@@ -1,11 +1,9 @@
-import { TestBed, inject } from '@angular/core/testing'
+import { inject, TestBed } from '@angular/core/testing'
 
-import { S3Service } from './s3.service'
 import { MockElectron } from 'src/app/infrastructure/mock-electron.service'
 import { ElectronService } from 'src/app/infrastructure/services/electron.service'
-import { SimpleNotificationsModule } from 'angular2-notifications'
-import { S3Item } from '../s3-item'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
+import { S3Service } from 'src/app/aws-s3/services/s3.service'
 
 describe('S3Service', () => {
   let electron: MockElectron

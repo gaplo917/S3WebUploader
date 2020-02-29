@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { TreeItemComponent } from './tree-item.component'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
-import { TreeNodeType, AccountNode, FolderNode, FileNode } from '../tree-node'
 import { AwsS3Module } from 'src/app/aws-s3/aws-s3.module'
 import { S3Service } from 'src/app/aws-s3/services/s3.service'
 import { RouterTestingModule } from '@angular/router/testing'
 import { Router } from '@angular/router'
+import { TreeItemComponent } from 'src/app/tree-view/tree-item/tree-item.component'
+import { AccountNode, FileNode, FolderNode, TreeNodeType } from 'src/app/tree-view/tree-node'
 
 describe('TreeItemComponent', () => {
   let component: TreeItemComponent

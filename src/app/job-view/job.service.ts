@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core'
-import { Observable, BehaviorSubject } from 'rxjs'
-import { Job } from './job'
-import { JobStatus } from './job-status'
-import { JobType } from './job-type'
-import { ElectronService } from '../infrastructure/services/electron.service'
+import { BehaviorSubject, Observable } from 'rxjs'
+import { ElectronService } from 'src/app/infrastructure/services/electron.service'
+import { Job } from 'src/app/job-view/job'
+import { JobType } from 'src/app/job-view/job-type'
+import { JobStatus } from 'src/app/job-view/job-status'
 
 @Injectable({
   providedIn: 'root',

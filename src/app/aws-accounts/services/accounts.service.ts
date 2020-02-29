@@ -1,7 +1,7 @@
-import { Injectable, EventEmitter } from '@angular/core'
+import { EventEmitter, Injectable } from '@angular/core'
 import { ElectronService } from 'src/app/infrastructure/services/electron.service'
-import { Observable, BehaviorSubject } from 'rxjs'
-import { IAccount } from '../../services/model'
+import { BehaviorSubject, Observable } from 'rxjs'
+import { IAccount } from 'src/app/services/model'
 
 @Injectable({
   providedIn: 'root',

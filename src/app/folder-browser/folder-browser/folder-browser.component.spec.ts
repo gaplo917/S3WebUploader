@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing'
-import { FolderBrowserComponent } from './folder-browser.component'
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
+import { FolderBrowserComponent } from 'src/app/folder-browser/folder-browser/folder-browser.component'
 import { RouterTestingModule } from '@angular/router/testing'
-import { Router, ActivatedRoute, Route } from '@angular/router'
-import { Observable, of, BehaviorSubject, Subject } from 'rxjs'
+import { ActivatedRoute, Route, Router } from '@angular/router'
+import { Subject } from 'rxjs'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
 import { AwsS3Module } from 'src/app/aws-s3/aws-s3.module'
 import { S3Service } from 'src/app/aws-s3/services/s3.service'
@@ -10,7 +10,7 @@ import { ElectronService } from 'src/app/infrastructure/services/electron.servic
 import { MockElectron } from 'src/app/infrastructure/mock-electron.service'
 import { TreeViewModule } from 'src/app/tree-view/tree-view.module'
 import { SelectionService } from 'src/app/tree-view/services/selection.service'
-import { FileInfoComponent } from '../file-info/file-info.component'
+import { FileInfoComponent } from 'src/app/folder-browser/file-info/file-info.component'
 
 const routes: Route[] = [
   {

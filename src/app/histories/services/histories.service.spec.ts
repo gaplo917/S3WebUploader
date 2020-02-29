@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing'
+import { inject, TestBed } from '@angular/core/testing'
 
-import { HistoriesService } from './histories.service'
+import { HistoriesService } from 'src/app/histories/services/histories.service'
 import { ElectronService } from 'src/app/infrastructure/services/electron.service'
 import { MockElectron } from 'src/app/infrastructure/mock-electron.service'
 

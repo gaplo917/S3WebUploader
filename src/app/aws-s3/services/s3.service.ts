@@ -1,9 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core'
 import { ElectronService } from 'src/app/infrastructure/services/electron.service'
-import { S3Item } from '../s3-item'
 import * as uuid from 'uuid'
 import { BehaviorSubject, Observable } from 'rxjs'
-import { IAccount } from '../../services/model'
+import { IAccount } from 'src/app/services/model'
+import { S3Item } from 'src/app/aws-s3/s3-item'
 
 @Injectable({
   providedIn: 'root',

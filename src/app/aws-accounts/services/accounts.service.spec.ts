@@ -1,5 +1,5 @@
-import { TestBed, inject } from '@angular/core/testing'
-import { AccountsService } from './accounts.service'
+import { inject, TestBed } from '@angular/core/testing'
+import { AccountsService } from 'src/app/aws-accounts/services/accounts.service'
 import { ElectronService } from 'src/app/infrastructure/services/electron.service'
 import { MockElectron } from 'src/app/infrastructure/mock-electron.service'
 

@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { JobItemComponent } from './job-item.component'
 import { NO_ERRORS_SCHEMA } from '@angular/core'
-import { JobType } from '../job-type'
-import { JobStatus } from '../job-status'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { FileSizePipe } from '../../pipes/file-size.pipe'
+import { JobItemComponent } from 'src/app/job-view/job-item/job-item.component'
+import { FileSizePipe } from 'src/app/pipes/file-size.pipe'
+import { JobType } from 'src/app/job-view/job-type'
+import { JobStatus } from 'src/app/job-view/job-status'
 
 describe('JobItemComponent', () => {
   let component: JobItemComponent

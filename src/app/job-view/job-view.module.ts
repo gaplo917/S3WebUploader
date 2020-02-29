@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { JobListComponent } from './job-list/job-list.component'
-import { InfrastructureModule } from '../infrastructure/infrastructure.module'
-import { JobItemComponent } from './job-item/job-item.component'
-import { FileSizePipe } from '../pipes/file-size.pipe'
+import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
+import { JobListComponent } from 'src/app/job-view/job-list/job-list.component'
+import { JobItemComponent } from 'src/app/job-view/job-item/job-item.component'
+import { FileSizePipe } from 'src/app/pipes/file-size.pipe'
 
 @NgModule({
   imports: [CommonModule, InfrastructureModule],

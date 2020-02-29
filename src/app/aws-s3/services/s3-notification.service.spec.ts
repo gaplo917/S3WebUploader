@@ -1,9 +1,9 @@
-import { TestBed, inject } from '@angular/core/testing'
+import { inject, TestBed } from '@angular/core/testing'
 
-import { S3NotificationService } from './s3-notification.service'
-import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications'
-import { ElectronService } from '../../infrastructure/services/electron.service'
-import { MockElectron } from '../../infrastructure/mock-electron.service'
+import { NotificationsService, SimpleNotificationsModule } from 'angular2-notifications'
+import { ElectronService } from 'src/app/infrastructure/services/electron.service'
+import { MockElectron } from 'src/app/infrastructure/mock-electron.service'
+import { S3NotificationService } from 'src/app/aws-s3/services/s3-notification.service'
 
 describe('S3NotificationService', () => {
   beforeEach(() => {
@@ -16,7 +16,7 @@ describe('S3NotificationService', () => {
   it('should be created', inject([S3NotificationService], (service: S3NotificationService) => {
     expect(service).toBeTruthy()
   }))
-  it('shuold delegate to NotificationsService on S3-OperationFailed', inject(
+  it('should delegate to NotificationsService on S3-OperationFailed', inject(
     [S3NotificationService],
     (service: S3NotificationService) => {
       service.init()

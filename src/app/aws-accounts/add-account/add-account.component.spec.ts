@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing'
-import { AddAccountComponent } from './add-account.component'
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
+import { AddAccountComponent } from 'src/app/aws-accounts/add-account/add-account.component'
 import { FormsModule } from '@angular/forms'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { AccountsService } from '../services/accounts.service'
+import { AccountsService } from 'src/app/aws-accounts/services/accounts.service'
 
 describe('AddAccountComponent', () => {
   let component: AddAccountComponent

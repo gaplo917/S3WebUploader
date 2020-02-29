@@ -1,9 +1,9 @@
 import * as AWS from 'aws-sdk'
 import { GetObjectOutput, ListBucketsOutput, ListObjectsOutput } from 'aws-sdk/clients/s3'
-import { ElectronJobManager } from './job-manager'
-import { IAccount } from './model'
-import { MessageBus } from './message-bus'
 import { Injectable } from '@angular/core'
+import { MessageBus } from 'src/app/services/message-bus'
+import { ElectronJobManager } from 'src/app/services/job-manager'
+import { IAccount } from 'src/app/services/model'
 
 AWS.config.apiVersions = {
   s3: '2006-03-01',

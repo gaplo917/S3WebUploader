@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core'
 import { DomService } from 'src/app/infrastructure/services/dom.service'
-import { ConfirmUploadComponent } from '../confirm-upload/confirm-upload.component'
-import { UploadItem } from '../upload-item'
-import { ElectronService } from 'src/app/infrastructure/services/electron.service'
-import { S3Service } from './s3.service'
-import { IAccount } from '../../services/model'
+import { S3Service } from 'src/app/aws-s3/services/s3.service'
+import { IAccount } from 'src/app/services/model'
+import { UploadItem } from 'src/app/aws-s3/upload-item'
+import { ConfirmUploadComponent } from 'src/app/aws-s3/confirm-upload/confirm-upload.component'
 
 @Injectable({
   providedIn: 'root',
 })
 export class RequestUploadService {
   toPrompt = true
-  constructor(private dom: DomService, private s3: S3Service, private electron: ElectronService) {}
+  constructor(private dom: DomService, private s3: S3Service) {}
 
   init() {}
 
@@ -30,7 +29,7 @@ export class RequestUploadService {
       const files = items.map(_ => {
         return {
           filePath: _.path,
-          newPath: prefix + _.newName,
+          newPath: `${prefix}${_.newName}`,
           file: _.file,
         }
       })

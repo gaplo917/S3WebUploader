@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-import { UploadItem } from './aws-s3/upload-item'
+import { UploadItem } from 'src/app/aws-s3/upload-item'
 
 export function collectFiles(item, path, items: UploadItem[]): Promise<UploadItem[]> {
   path = path || ''

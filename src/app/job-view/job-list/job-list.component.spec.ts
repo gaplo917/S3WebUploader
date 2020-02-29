@@ -1,13 +1,13 @@
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
 
-import { JobListComponent } from './job-list.component'
-import { JobService } from '../job.service'
-import { JobType } from '../job-type'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { JobItemComponent } from '../job-item/job-item.component'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
-import { JobStatus } from '../job-status'
-import { FileSizePipe } from '../../pipes/file-size.pipe'
+import { JobListComponent } from 'src/app/job-view/job-list/job-list.component'
+import { JobItemComponent } from 'src/app/job-view/job-item/job-item.component'
+import { FileSizePipe } from 'src/app/pipes/file-size.pipe'
+import { JobService } from 'src/app/job-view/job.service'
+import { JobType } from 'src/app/job-view/job-type'
+import { JobStatus } from 'src/app/job-view/job-status'
 
 describe('JobListComponent', () => {
   let component: JobListComponent

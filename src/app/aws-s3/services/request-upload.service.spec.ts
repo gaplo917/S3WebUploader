@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing'
+import { inject, TestBed } from '@angular/core/testing'
 
-import { RequestUploadService } from './request-upload.service'
+import { RequestUploadService } from 'src/app/aws-s3/services/request-upload.service'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
 
 describe('RequestUploadService', () => {

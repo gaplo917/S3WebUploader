@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-import { UnlockAccountComponent } from './unlock-account.component'
+import { UnlockAccountComponent } from 'src/app/aws-accounts/unlock-account/unlock-account.component'
 import { FormsModule } from '@angular/forms'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'

@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { SideNavComponent } from './side-nav.component'
 import { NO_ERRORS_SCHEMA } from '@angular/core'
-import { InfrastructureModule } from '../infrastructure/infrastructure.module'
-import { DomService } from '../infrastructure/services/dom.service'
-import { AwsAccountsModule } from '../aws-accounts/aws-accounts.module'
-import { JobViewModule } from '../job-view/job-view.module'
+import { SideNavComponent } from 'src/app/side-nav/side-nav.component'
+import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
+import { AwsAccountsModule } from 'src/app/aws-accounts/aws-accounts.module'
+import { JobViewModule } from 'src/app/job-view/job-view.module'
+import { DomService } from 'src/app/infrastructure/services/dom.service'
 
 describe('SideNavComponent', () => {
   let component: SideNavComponent

@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing'
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
 
-import { ConfirmUploadComponent } from './confirm-upload.component'
 import { FormsModule } from '@angular/forms'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
-import { UploadItem } from '../upload-item'
+import { ConfirmUploadComponent } from 'src/app/aws-s3/confirm-upload/confirm-upload.component'
+import { UploadItem } from 'src/app/aws-s3/upload-item'
 
 describe('ConfirmUploadComponent', () => {
   let component: ConfirmUploadComponent

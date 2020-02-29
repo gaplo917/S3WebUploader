@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { InfrastructureModule } from '../infrastructure/infrastructure.module'
 import { SimpleNotificationsModule } from 'angular2-notifications'
-import { ConfirmUploadComponent } from './confirm-upload/confirm-upload.component'
 import { FormsModule } from '@angular/forms'
+import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
+import { ConfirmUploadComponent } from 'src/app/aws-s3/confirm-upload/confirm-upload.component'
 
 @NgModule({
   imports: [CommonModule, InfrastructureModule, SimpleNotificationsModule, FormsModule],

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { SubscriptionComponent } from '../infrastructure/subscription-component'
+import { SubscriptionComponent } from 'src/app/infrastructure/subscription-component'
 
 @Component({
   selector: 'app-welcome-page',

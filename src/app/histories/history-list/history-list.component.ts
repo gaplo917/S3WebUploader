@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { HistoriesService } from '../services/histories.service'
 import { SubscriptionComponent } from 'src/app/infrastructure/subscription-component'
+import { HistoriesService } from 'src/app/histories/services/histories.service'
 
 @Component({
   selector: 'app-history-list',

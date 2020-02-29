@@ -1,7 +1,7 @@
-import { S3Service } from '../aws-s3/services/s3.service'
-import { RequestUploadService } from '../aws-s3/services/request-upload.service'
-import { UploadItem } from '../aws-s3/upload-item'
-import { IAccount } from '../services/model'
+import { S3Service } from 'src/app/aws-s3/services/s3.service'
+import { RequestUploadService } from 'src/app/aws-s3/services/request-upload.service'
+import { UploadItem } from 'src/app/aws-s3/upload-item'
+import { IAccount } from 'src/app/services/model'
 
 export interface TreeNode {
   name?: string
@@ -35,7 +35,7 @@ export abstract class S3ActionNode implements TreeNode {
 
   dropAction(service: RequestUploadService, files: UploadItem[]) {}
 
-  constructor(n: string, t: TreeNodeType) {
+  protected constructor(n: string, t: TreeNodeType) {
     this.name = n
     this.type = t
   }

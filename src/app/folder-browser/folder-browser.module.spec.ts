@@ -1,4 +1,4 @@
-import { FolderBrowserModule } from './folder-browser.module'
+import { FolderBrowserModule } from 'src/app/folder-browser/folder-browser.module'
 
 describe('FolderBrowserModule', () => {
   let folderBrowserModule: FolderBrowserModule

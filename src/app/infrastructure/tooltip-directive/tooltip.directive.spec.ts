@@ -1,7 +1,6 @@
-import { TooltipDirective } from './tooltip.directive'
-import { TooltipComponent } from '../tooltip/tooltip.component'
-import { ComponentFixture, TestBed, async } from '@angular/core/testing'
-import { OnInit, Component } from '@angular/core'
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { Component, OnInit } from '@angular/core'
+import { TooltipDirective } from 'src/app/infrastructure/tooltip-directive/tooltip.directive'
 
 describe('TooltipDirective', () => {
   it('should create an instance', () => {

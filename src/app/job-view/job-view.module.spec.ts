@@ -1,4 +1,4 @@
-import { JobViewModule } from './job-view.module'
+import { JobViewModule } from 'src/app/job-view/job-view.module'
 
 describe('JobViewModule', () => {
   let jobViewModule: JobViewModule

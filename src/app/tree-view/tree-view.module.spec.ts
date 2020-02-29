@@ -1,4 +1,4 @@
-import { TreeViewModule } from './tree-view.module'
+import { TreeViewModule } from 'src/app/tree-view/tree-view.module'
 
 describe('TreeViewModule', () => {
   let treeViewModule: TreeViewModule

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { TreeViewComponent } from './tree-view/tree-view.component'
-import { TreeItemComponent } from './tree-item/tree-item.component'
-import { InfrastructureModule } from '../infrastructure/infrastructure.module'
 import { RouterModule } from '@angular/router'
+import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
+import { TreeViewComponent } from 'src/app/tree-view/tree-view/tree-view.component'
+import { TreeItemComponent } from 'src/app/tree-view/tree-item/tree-item.component'
 
 @NgModule({
   imports: [CommonModule, InfrastructureModule, RouterModule],

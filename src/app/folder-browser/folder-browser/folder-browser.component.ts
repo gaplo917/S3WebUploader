@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core'
-import { Router, ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { SubscriptionComponent } from 'src/app/infrastructure/subscription-component'
 import { S3Service } from 'src/app/aws-s3/services/s3.service'
 import { S3Item } from 'src/app/aws-s3/s3-item'
 import { SelectionService } from 'src/app/tree-view/services/selection.service'
 import { collectFiles } from 'src/app/collectfiles'
 import { RequestUploadService } from 'src/app/aws-s3/services/request-upload.service'
-import { IAccount } from '../../services/model'
+import { IAccount } from 'src/app/services/model'
 
 @Component({
   selector: 'app-folder-browser',

@@ -1,7 +1,7 @@
 import * as AWS from 'aws-sdk'
-import { IAccount } from './model'
-import { MessageBus } from './message-bus'
 import { Injectable } from '@angular/core'
+import { MessageBus } from 'src/app/services/message-bus'
+import { IAccount } from 'src/app/services/model'
 
 @Injectable({
   providedIn: 'root',

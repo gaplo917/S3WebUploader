@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core'
-import { S3Service } from '../services/s3.service'
-import { UploadItem } from '../upload-item'
-import { IAccount } from '../../services/model'
+import { UploadItem } from 'src/app/aws-s3/upload-item'
+import { S3Service } from 'src/app/aws-s3/services/s3.service'
+import { IAccount } from 'src/app/services/model'
 
 @Component({
   selector: 'app-confirm-upload',

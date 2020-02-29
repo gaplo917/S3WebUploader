@@ -1,12 +1,9 @@
-import { TestBed, inject } from '@angular/core/testing'
-
-import { JobService } from './job.service'
-import { Job } from './job'
-import { JobType } from './job-type'
-import { JobStatus } from './job-status'
-import { InfrastructureModule } from '../infrastructure/infrastructure.module'
-import { MockElectron } from '../infrastructure/mock-electron.service'
-import { ElectronService } from '../infrastructure/services/electron.service'
+import { inject, TestBed } from '@angular/core/testing'
+import { MockElectron } from 'src/app/infrastructure/mock-electron.service'
+import { JobService } from 'src/app/job-view/job.service'
+import { ElectronService } from 'src/app/infrastructure/services/electron.service'
+import { JobType } from 'src/app/job-view/job-type'
+import { JobStatus } from 'src/app/job-view/job-status'
 
 describe('JobService', () => {
   let electron: MockElectron

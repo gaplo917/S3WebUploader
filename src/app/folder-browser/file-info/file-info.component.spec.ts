@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { FileInfoComponent } from './file-info.component'
+import { FileInfoComponent } from 'src/app/folder-browser/file-info/file-info.component'
 
 describe('FileInfoComponent', () => {
   let component: FileInfoComponent

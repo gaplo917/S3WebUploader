@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { HistoryListComponent } from './history-list.component'
+import { HistoryListComponent } from 'src/app/histories/history-list/history-list.component'
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module'
-import { HistoriesService } from '../services/histories.service'
 import { BehaviorSubject } from 'rxjs'
+import { HistoriesService } from 'src/app/histories/services/histories.service'
 
 describe('HistoryListComponent', () => {
   let component: HistoryListComponent

@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing'
+import { inject, TestBed } from '@angular/core/testing'
 
-import { SelectionService } from './selection.service'
+import { SelectionService } from 'src/app/tree-view/services/selection.service'
 
 describe('SelectionService', () => {
   beforeEach(() => {

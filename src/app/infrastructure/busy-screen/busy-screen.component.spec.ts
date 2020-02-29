@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { BusyScreenComponent } from './busy-screen.component'
-import { SpinnerComponent } from '../spinner/spinner.component'
 import { Component, OnInit } from '@angular/core'
+import { SpinnerComponent } from 'src/app/infrastructure/spinner/spinner.component'
+import { BusyScreenComponent } from 'src/app/infrastructure/busy-screen/busy-screen.component'
 
 @Component({
   selector: 'app-host',
